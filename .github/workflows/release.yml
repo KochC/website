@@ -41,13 +41,13 @@ jobs:
       - name: List
         run: |
           ls -l
-          ls l build
+          ls l dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: "build"
+          path: "dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
