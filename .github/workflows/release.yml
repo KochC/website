@@ -38,15 +38,9 @@ jobs:
           cat ./src/components/version.js
           yarn build
 
-      - name: List
-        run: |
-          ls -l
-          ls -l dist
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: "dist"
 
       - name: Deploy to GitHub Pages

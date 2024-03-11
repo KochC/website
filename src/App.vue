@@ -18,6 +18,7 @@ export default {
     Impressum,
     ParticlesBg
   },
+  publicPath: '/website/'
 }
 </script>
 
