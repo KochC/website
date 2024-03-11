@@ -14,6 +14,7 @@ export default {
           v: build_version,
       }
   },
+  base: '/website/',
   created: function(){
       console.log(this.v);
   }

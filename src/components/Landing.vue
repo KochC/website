@@ -20,6 +20,7 @@ export default {
   components: {
     Version
   },
+  base: '/website/',
 }
 </script>
 

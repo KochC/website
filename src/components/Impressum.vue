@@ -26,7 +26,8 @@ export default {
   name: 'Impressum',
   props: {
     msg: String
-  }
+  },
+  base: '/website/',
 }
 </script>
 
