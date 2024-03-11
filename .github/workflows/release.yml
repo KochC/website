@@ -1,0 +1,54 @@
+name: deploy to pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "20"
+
+      - name: Build
+        run: |
+          npm install
+          echo 'export var build_version = "0.${{ github.run_number }}";' > ./src/components/version.js
+          cat ./src/components/version.js
+          yarn build
+
+      - name: List
+        run: |
+          ls -l
+          ls l build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: "build"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

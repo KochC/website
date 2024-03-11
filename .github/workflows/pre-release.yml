@@ -1,21 +1,21 @@
-name: ftp release
+name: build check
 
 on:
-   push:
-     branches:
-       - develop
+  push:
+    branches:
+      - develop
 
 jobs:
-   Compile_UI:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@master
-       - uses: actions/setup-node@v1
-         with:
-           node-version: "14"
-       - name: Build
-         run: |
-           npm install
-           echo 'export var build_version = "0.${{ github.run_number }}";' > ./src/components/version.js
-           cat ./src/components/version.js
-           yarn build
+  Compile_UI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: Build
+        run: |
+          npm install
+          echo 'export var build_version = "0.${{ github.run_number }}";' > ./src/components/version.js
+          cat ./src/components/version.js
+          yarn build
