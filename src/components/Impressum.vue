@@ -16,7 +16,7 @@
     
         <br />
         <br />
-        &copy; koch.codes 2023
+        &copy; koch.codes 2024
     </div>
   </div>
 </template>
@@ -26,8 +26,7 @@ export default {
   name: 'Impressum',
   props: {
     msg: String
-  },
-  base: '/website/',
+  }
 }
 </script>
 
