@@ -16,7 +16,7 @@
     
         <br />
         <br />
-        &copy; koch.codes 2024
+        &copy; koch.codes 2025
     </div>
   </div>
 </template>
