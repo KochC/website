@@ -12,34 +12,43 @@ function openMail() {
 </script>
 
 <template>
-  <section id="impressum" class="impressum-section">
+  <section id="impressum" class="section impressum-section">
     <div class="container">
-      <div class="impressum-content">
-        <h2 class="section-title">{{ t('impressum.title') }}</h2>
+      <h2 class="section-title">{{ t('impressum.title') }}</h2>
+      <div class="impressum-grid">
+        <div class="impressum-card">
+          <h3>{{ t('impressum.info_title') }}</h3>
+          <p>Christopher Koch<br />Frankfurter Landstr. 243<br />Darmstadt</p>
+        </div>
 
-        <h3>{{ t('impressum.info_title') }}</h3>
-        <p>Christopher Koch<br />Frankfurter Landstr. 243<br />Darmstadt</p>
+        <div class="impressum-card">
+          <h3>{{ t('impressum.contact') }}</h3>
+          <p>
+            <span aria-label="Telefonnummer">{{ t('impressum.phone') }}</span><br />
+            E-Mail: <a href="#" @click.prevent="openMail" class="email-link">{{ emailUser }}&#64;{{ emailDomain }}</a>
+          </p>
+        </div>
 
-        <h3>{{ t('impressum.contact') }}</h3>
-        <p>
-          <span aria-label="Telefonnummer">{{ t('impressum.phone') }}</span><br />
-          E-Mail: <a href="#" @click.prevent="openMail" class="email-link">{{ emailUser }}&#64;{{ emailDomain }}</a>
-        </p>
+        <div class="impressum-card">
+          <h3>{{ t('impressum.liability_content_title') }}</h3>
+          <p>{{ t('impressum.liability_content_1') }}</p>
+          <p>{{ t('impressum.liability_content_2') }}</p>
+        </div>
 
-        <h3>{{ t('impressum.liability_content_title') }}</h3>
-        <p>{{ t('impressum.liability_content_1') }}</p>
-        <p>{{ t('impressum.liability_content_2') }}</p>
+        <div class="impressum-card">
+          <h3>{{ t('impressum.liability_links_title') }}</h3>
+          <p>{{ t('impressum.liability_links_1') }}</p>
+          <p>{{ t('impressum.liability_links_2') }}</p>
+        </div>
 
-        <h3>{{ t('impressum.liability_links_title') }}</h3>
-        <p>{{ t('impressum.liability_links_1') }}</p>
-        <p>{{ t('impressum.liability_links_2') }}</p>
-
-        <h3>{{ t('impressum.copyright_title') }}</h3>
-        <p>{{ t('impressum.copyright_1') }}</p>
-        <p>{{ t('impressum.copyright_2') }}</p>
-
-        <p class="copyright">&copy; koch.codes 2026</p>
+        <div class="impressum-card">
+          <h3>{{ t('impressum.copyright_title') }}</h3>
+          <p>{{ t('impressum.copyright_1') }}</p>
+          <p>{{ t('impressum.copyright_2') }}</p>
+        </div>
       </div>
+
+      <p class="copyright">&copy; koch.codes 2026</p>
     </div>
   </section>
 </template>
@@ -47,32 +56,41 @@ function openMail() {
 <style scoped>
 .impressum-section {
   background: var(--color-text);
-  color: #cbd5e1;
-  padding: 80px 0;
 }
 
-.impressum-section :deep(.section-title) {
-  color: white;
-}
-
-.impressum-content {
-  max-width: 640px;
+.impressum-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-.impressum-content h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: white;
-  margin-top: 32px;
-  margin-bottom: 8px;
+.impressum-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 28px 32px;
 }
 
-.impressum-content p {
+.impressum-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.impressum-card p {
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.85rem;
   line-height: 1.7;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: #94a3b8;
+}
+
+.impressum-card p:last-child {
+  margin-bottom: 0;
 }
 
 .email-link {
@@ -80,6 +98,7 @@ function openMail() {
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-color: #475569;
+  transition: color var(--transition);
 }
 
 .email-link:hover {
@@ -88,10 +107,21 @@ function openMail() {
 }
 
 .copyright {
+  text-align: center;
   margin-top: 48px;
   padding-top: 24px;
-  border-top: 1px solid #334155;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.8rem;
-  color: #64748b !important;
+  color: #64748b;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .impressum-card {
+    padding: 20px;
+  }
 }
 </style>
