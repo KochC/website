@@ -62,8 +62,6 @@ function openMail() {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 720px;
-  margin: 0 auto;
 }
 
 .impressum-card {
