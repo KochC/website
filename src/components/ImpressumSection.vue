@@ -24,8 +24,11 @@ function openMail() {
         <div class="impressum-card">
           <h3>{{ t('impressum.contact') }}</h3>
           <p>
-            <span aria-label="Telefonnummer">{{ t('impressum.phone') }}</span><br />
-            E-Mail: <a href="#" @click.prevent="openMail" class="email-link">{{ emailUser }}&#64;{{ emailDomain }}</a>
+            <span class="obf" aria-label="Telefonnummer">{{ t('impressum.phone_rev') }}</span><br />
+            E-Mail: <span class="obf">sedoc.hcok@sirhc</span>
+          </p>
+          <p class="contact-hint">
+            <a href="#" @click.prevent="openMail" class="email-link">{{ t('impressum.contact_hint') }}</a>
           </p>
         </div>
 
@@ -89,6 +92,18 @@ function openMail() {
 
 .impressum-card p:last-child {
   margin-bottom: 0;
+}
+
+.obf {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.contact-hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
 }
 
 .email-link {
