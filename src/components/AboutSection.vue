@@ -21,15 +21,6 @@ const { t } = useI18n()
               <span v-for="skill in t('skills')" :key="skill" class="skill-tag">{{ skill }}</span>
             </div>
           </div>
-          <div class="about-card">
-            <h3>{{ t('about.languages_title') }}</h3>
-            <ul class="lang-list">
-              <li v-for="lang in t('languages')" :key="lang.name">
-                <strong>{{ lang.name }}</strong>
-                <span>{{ lang.level }}</span>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -113,27 +104,6 @@ const { t } = useI18n()
   border-radius: 20px;
   background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));
   color: var(--color-primary-dark);
-}
-
-.lang-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.lang-list li {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-}
-
-.lang-list strong {
-  font-weight: 600;
-}
-
-.lang-list span {
-  color: var(--color-text-muted);
 }
 
 @media (max-width: 768px) {
