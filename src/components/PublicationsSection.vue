@@ -5,6 +5,19 @@ const { t, locale } = useI18n()
 
 const publications = [
   {
+    id: 'arXiv:2606.16649',
+    date_de: 'Juni 2026',
+    date_en: 'June 2026',
+    subjects: 'cs.AI',
+    authors: 'Christopher Koch, Joshua A. Wellbrock',
+    pages: '10 pages, 15 tables',
+    title: 'The Integrator Advantage: Controlled Agentic AI for Small and Medium-Sized Companies',
+    abstract_de: 'Agentische KI markiert eine neue Phase der Unternehmensautomatisierung. Im Gegensatz zu traditioneller Automatisierung oder konversationeller KI können agentische Systeme Ziele interpretieren, mehrstufige Aufgaben planen, auf Tools zugreifen, mit Unternehmenssystemen interagieren und Workflows mit unterschiedlichen Autonomiegraden ausführen. Für kleine und mittelständische Unternehmen entsteht dadurch das Potenzial, den Verwaltungsaufwand zu reduzieren, Routineprozesse zu beschleunigen und die Nutzung von Organisationswissen zu verbessern. Dieses Papier argumentiert, dass der kurzfristige Wert von agentischer KI nicht in vollständiger Autonomie oder Personalabbau liegt, sondern in kontrollierter partieller Autonomie für einfache und mittlere komplexe Geschäftsprozesse. Es schlägt ein Integrationsframework vor, das die Eignung von Anwendungsfällen, Autonomiestufen, technische Integration, Governance, Sicherheit, Mitarbeiterqualifizierung und messbare Auswirkungen abdeckt. Das Papier kommt zu dem Schluss, dass agentische KI zu einem Produktivitätshebel werden kann, wenn sie als menschenzentrierte Fähigkeit implementiert wird, bei der Verantwortung und Rechenschaftspflicht bei Menschen verbleiben.',
+    abstract_en: 'Agentic AI marks a new phase of enterprise automation. Unlike traditional automation or conversational AI, agentic systems can interpret goals, plan multi step tasks, access tools, interact with enterprise systems, and execute workflows with varying degrees of autonomy. For small and medium sized companies, this creates potential to reduce administrative burden, accelerate routine processes, and improve the use of organizational knowledge. This paper argues that the near term value of Agentic AI does not lie in full autonomy or workforce reduction, but in controlled partial autonomy for simple and medium complexity business processes. It proposes an integration framework covering use case suitability, autonomy levels, technical integration, governance, security, employee enablement, and measurable impact. The paper concludes that Agentic AI can become a productivity lever when implemented as a human centered capability with responsibility and accountability retained by people.',
+    url_pdf: 'https://arxiv.org/pdf/2606.16649',
+    url_abs: 'https://arxiv.org/abs/2606.16649',
+  },
+  {
     id: 'arXiv:2605.20456',
     date_de: 'Mai 2026',
     date_en: 'May 2026',
