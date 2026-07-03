@@ -15,8 +15,8 @@ const { t } = useI18n()
           <p class="about-focus">{{ t('about.p3') }}</p>
         </div>
         <div class="about-sidebar">
-          <div class="about-card">
-            <h3>{{ t('about.skills_title') }}</h3>
+          <div class="about-card" v-spotlight>
+            <h3 class="eyebrow-label about-card-heading">{{ t('about.skills_title') }}</h3>
             <div class="skills-grid">
               <span v-for="skill in t('skills')" :key="skill" class="skill-tag">{{ skill }}</span>
             </div>
@@ -45,9 +45,7 @@ const { t } = useI18n()
 .about-focus {
   font-weight: 500;
   color: var(--color-text) !important;
-  border-left: 3px solid transparent;
-  border-image: linear-gradient(180deg, var(--color-gradient-1), var(--color-gradient-2));
-  border-image-slice: 1;
+  border-left: 3px solid var(--color-border);
   padding-left: 16px;
 }
 
@@ -62,32 +60,10 @@ const { t } = useI18n()
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 24px;
-  position: relative;
-  overflow: hidden;
 }
 
-.about-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3));
-  background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
-}
-
-.about-card h3 {
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.about-card-heading {
   margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .skills-grid {
@@ -100,10 +76,11 @@ const { t } = useI18n()
   display: inline-block;
   font-size: 0.8rem;
   font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));
-  color: var(--color-primary-dark);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
 }
 
 @media (max-width: 768px) {

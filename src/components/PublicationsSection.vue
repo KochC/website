@@ -104,7 +104,7 @@ const publications = [
       <h2 class="section-title">{{ t('publications.title') }}</h2>
       <p class="section-subtitle">{{ t('publications.subtitle') }}</p>
       <div class="pub-list">
-        <article v-for="pub in publications" :key="pub.id" class="pub-card">
+        <article v-for="pub in publications" :key="pub.id" class="pub-card" v-spotlight>
           <div class="pub-head">
             <span class="pub-id">{{ pub.id }}</span>
             <span class="pub-date">{{ locale === 'de' ? pub.date_de : pub.date_en }}</span>
@@ -135,11 +135,9 @@ const publications = [
 
 <style scoped>
 .section-subtitle {
-  text-align: center;
+  text-align: left;
   color: var(--color-text-secondary);
-  font-family: 'Spectral', Georgia, serif;
   font-size: 0.95rem;
-  font-style: italic;
   margin-bottom: 40px;
   margin-top: -16px;
 }
@@ -155,11 +153,11 @@ const publications = [
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 28px 32px;
-  transition: box-shadow var(--transition);
+  transition: border-color var(--transition);
 }
 
 .pub-card:hover {
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-text-muted);
 }
 
 .pub-head {
@@ -175,14 +173,14 @@ const publications = [
 .pub-id {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-text);
   letter-spacing: 0.01em;
 }
 
 .pub-title {
-  font-family: 'Spectral', Georgia, serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text);
   line-height: 1.35;
   margin-bottom: 10px;
@@ -215,7 +213,7 @@ const publications = [
 }
 
 .pub-abstract {
-  font-family: 'Spectral', Georgia, serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.875rem;
   color: var(--color-text-secondary);
   line-height: 1.75;
@@ -234,27 +232,29 @@ const publications = [
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  background: var(--color-primary-light);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-btn);
+  background: transparent;
   transition: all var(--transition);
 }
 
 .pub-link:hover {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
 }
 
 .pub-link-abs {
-  background: var(--color-border-light);
   color: var(--color-text-secondary);
 }
 
 .pub-link-abs:hover {
-  background: var(--color-border);
-  color: var(--color-text);
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
 }
 
 @media (max-width: 640px) {

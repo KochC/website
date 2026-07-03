@@ -7,34 +7,52 @@
 }
 
 :root {
-  --color-primary: #2563eb;
-  --color-primary-light: #dbeafe;
-  --color-primary-dark: #1d4ed8;
-  --color-accent: #0d9488;
-  --color-accent-light: #ccfbf1;
-  --color-bg: #f8fafc;
+  /* Backgrounds */
+  --color-bg: #fafaf9;
+  --color-bg-alt: #f5f5f4;
+  --color-bg-elevated: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #0f172a;
+  --color-nav-bg: rgba(250, 250, 249, 0.85);
+
+  /* Text */
+  --color-text: #020617;
   --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
+
+  /* Borders */
   --color-border: #e2e8f0;
   --color-border-light: #f1f5f9;
-  --color-gradient-1: #2563eb;
-  --color-gradient-2: #0d9488;
-  --color-gradient-3: #7c3aed;
-  --color-gradient-4: #db2777;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 25px rgba(0,0,0,0.06);
+  --color-border-btn: #cbd5e1;
+
+  /* Shape */
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-pill: 9999px;
+
   --transition: 200ms ease;
+
+  /* Spotlight card glow */
+  --color-spotlight: rgba(2, 6, 23, 0.05);
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+html.dark {
+  --color-bg: #070b11;
+  --color-bg-alt: #0a0f17;
+  --color-bg-elevated: #0d131c;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-nav-bg: rgba(7, 11, 17, 0.8);
+
+  --color-text: #ffffff;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+  --color-border-btn: rgba(255, 255, 255, 0.15);
+
+  --color-spotlight: rgba(255, 255, 255, 0.08);
 }
 
 html {
@@ -49,54 +67,74 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition), color var(--transition);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  font-weight: 700;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .section {
-  padding: 96px 0;
+  padding: 112px 0;
 }
 
 .section-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 2.75rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   margin-bottom: 40px;
-  text-align: center;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% 200%;
-  animation: gradient-shift 6s ease infinite;
+  text-align: left;
+  color: var(--color-text);
 }
 
-.gradient-border {
+.eyebrow-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-text-muted);
+}
+
+/* Spotlight card: a subtle mouse-tracking radial glow, applied via the
+   `v-spotlight` directive (see src/directives/spotlight.js). Kept low-opacity
+   and monochrome so it stays consistent with the rest of the design system. */
+.spotlight-card {
   position: relative;
 }
 
-.gradient-border::before {
+.spotlight-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3), var(--color-gradient-4));
-  background-size: 300% 300%;
-  animation: gradient-shift 8s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
   pointer-events: none;
+  opacity: var(--spotlight-opacity, 0);
+  background: radial-gradient(
+    360px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    var(--color-spotlight),
+    transparent 70%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* Alternating section backgrounds (mainly meaningful in dark mode) */
+#about,
+#publications,
+#certifications {
+  background: var(--color-bg-alt);
+}
+
+#experience,
+#awards {
+  background: var(--color-bg);
 }
 
 @media (max-width: 640px) {
@@ -107,6 +145,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 64px 0;
   }
   .section-title {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }

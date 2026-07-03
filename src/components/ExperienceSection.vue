@@ -19,7 +19,7 @@ const { t } = useI18n()
               <h3 class="company-name">{{ company.company }}</h3>
               <span class="company-location">{{ company.location }}</span>
             </div>
-            <div v-for="role in company.positions" :key="role.title" class="role-card">
+            <div v-for="role in company.positions" :key="role.title" class="role-card" v-spotlight>
               <div class="role-header">
                 <h4 class="role-title">{{ role.title }}</h4>
                 <span class="role-period">{{ role.period }}</span>
@@ -56,20 +56,18 @@ const { t } = useI18n()
 }
 
 .timeline-dot {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2));
-  border: 3px solid var(--color-primary-light);
+  background: var(--color-text);
   flex-shrink: 0;
   z-index: 1;
-  box-shadow: 0 0 12px rgba(37,99,235,0.3);
 }
 
 .timeline-line {
-  width: 2px;
+  width: 1px;
   flex: 1;
-  background: linear-gradient(180deg, var(--color-gradient-1), var(--color-gradient-2), var(--color-gradient-3), transparent);
+  background: var(--color-border);
   margin-top: 4px;
 }
 
@@ -88,11 +86,8 @@ const { t } = useI18n()
 
 .company-name {
   font-size: 1.2rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .company-location {
@@ -107,30 +102,11 @@ const { t } = useI18n()
   border-radius: var(--radius-sm);
   padding: 20px;
   margin-bottom: 12px;
-  transition: box-shadow var(--transition), transform var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.role-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--color-gradient-1), transparent);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-.role-card:hover::before {
-  opacity: 1;
+  transition: border-color var(--transition);
 }
 
 .role-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateX(4px);
+  border-color: var(--color-text-muted);
 }
 
 .role-header {

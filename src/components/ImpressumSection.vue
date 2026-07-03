@@ -58,7 +58,11 @@ function openMail() {
 
 <style scoped>
 .impressum-section {
-  background: var(--color-text);
+  background: #0a0f17;
+}
+
+.impressum-section .section-title {
+  color: #ffffff;
 }
 
 .impressum-grid {
@@ -68,16 +72,16 @@ function openMail() {
 }
 
 .impressum-card {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
+  border-radius: 0;
   padding: 28px 32px;
 }
 
 .impressum-card h3 {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: white;
   margin-bottom: 12px;
 }

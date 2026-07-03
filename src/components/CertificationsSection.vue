@@ -21,7 +21,7 @@ const certifications = [
     <div class="container">
       <h2 class="section-title">{{ t('certifications.title') }}</h2>
       <div class="certs-grid">
-        <div v-for="cert in certifications" :key="cert.name" class="cert-card">
+        <div v-for="cert in certifications" :key="cert.name" class="cert-card" v-spotlight>
           <div class="cert-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="8" r="6"/>
@@ -54,11 +54,11 @@ const certifications = [
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 18px 20px;
-  transition: box-shadow var(--transition);
+  transition: border-color var(--transition);
 }
 
 .cert-card:hover {
-  box-shadow: var(--shadow);
+  border-color: var(--color-text-muted);
 }
 
 .cert-icon {
@@ -68,9 +68,10 @@ const certifications = [
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
 }
 
 .cert-body {

@@ -20,7 +20,7 @@ const awards = [
     <div class="container">
       <h2 class="section-title">{{ t('awards.title') }}</h2>
       <div class="awards-grid">
-        <div v-for="award in awards" :key="award.name" class="award-card">
+        <div v-for="award in awards" :key="award.name" class="award-card" v-spotlight>
           <div class="award-year">{{ award.year }}</div>
           <p class="award-name">{{ award.name }}</p>
         </div>
@@ -44,22 +44,21 @@ const awards = [
   display: flex;
   flex-direction: column;
   gap: 8px;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition: border-color var(--transition);
 }
 
 .award-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  border-color: var(--color-text-muted);
 }
 
 .award-year {
   display: inline-block;
   font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  background: var(--color-primary-light);
-  padding: 2px 10px;
-  border-radius: 4px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
   align-self: flex-start;
 }
 
