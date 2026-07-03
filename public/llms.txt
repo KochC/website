@@ -1,0 +1,76 @@
+# Christopher Koch — koch.codes
+
+> Personal website of Christopher Koch: Lead Engineer @ M-Trust™ (Merck Group) and independent Agentic AI researcher. Background across embedded systems/firmware, cloud architecture (AWS, Azure, Palantir Foundry), cryptography & secure systems, and agentic AI research (multi-agent systems, AI governance, AI-augmented engineering).
+
+This site is a Vue 3 single-page application. All page content below is provided here in plain text for LLMs and agents that cannot execute JavaScript. The canonical, human-facing version of the same content is rendered at https://koch.codes/ (sections: #about, #experience, #publications, #awards, #certifications, #impressum).
+
+## Contact & Profiles
+
+- Email: chris@koch.codes
+- LinkedIn: https://www.linkedin.com/in/koch-christopher/
+- GitHub: https://github.com/KochC
+- Website: https://koch.codes/
+
+## About
+
+Technology leader with expertise in embedded systems, cloud architecture, AI engineering, and digital transformation. Works across the full technology stack — from low-level firmware and hardware prototyping to cloud platforms (AWS, Azure, Palantir Foundry) through to AI-powered systems and secure architecture.
+
+Leads and orchestrates a large team of AI agents across various technical domains, using them to accelerate development, research, automation, documentation, and problem-solving. Also works as an independent researcher in Agentic AI, exploring multi-agent systems, autonomous workflows, and AI-driven engineering.
+
+Focus: building reliable, scalable, and maintainable systems — from embedded devices to cloud infrastructure and autonomous intelligence — especially in regulated technology environments.
+
+Skills: Embedded Systems, Firmware (C/C++), Hardware Design, AI / Agentic AI, AWS, Azure, Palantir Foundry, System Architecture, Cloud Platform Engineering, Cryptography & Security, SDK Integration, Prototyping, Team Leadership, Negotiation, Delegation.
+
+Languages: German (native), English (fluent, C1), French (elementary).
+
+## Experience
+
+**Merck Group** — Darmstadt
+- Lead Engineer | M-Trust™ | Science & Technology (Dec 2023 – Present): End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries.
+- Senior Data Engineer | Palantir Foundry Architect (Jan 2022 – Dec 2023): Technical lead for platform development, custom tools and integrations for data pipelines, analytics, and visualization.
+- Leader of the Makerspace | Innovation Center (Nov 2020 – Jan 2022): Led the Makerspace at the Merck Innovation Center; consulted on multi-million-dollar innovation projects; built prototypes for future technologies.
+- Innovation Manager | Innovation Center (Mar 2019 – Nov 2020): Led and supported innovation projects in computer science and engineering.
+- Consulting Expert Electronics & Digitalisation (Sep 2018 – Feb 2019): Consulted on future leading technologies at the Merck Innovation Center.
+
+**Wingcopter** — Frankfurt
+- Chief Systems Engineer (Dec 2017 – Jul 2018): Hardware and software development for unmanned aerial vehicles.
+- R&D Engineer (Aug 2017 – Dec 2017): Research and development in aerospace engineering.
+
+**Bosch** — Reutlingen / Renningen
+- Master Thesis | Automotive Electronics InnoLab (Mar 2017 – Aug 2017): Collision avoidance for autonomous flying robotic systems.
+- Bachelor Thesis | Advanced Development (Oct 2014 – Mar 2015): Generic light-animation description language and corresponding hardware for mobile robots.
+- Student Intern | Advanced Development (Aug 2013 – Jan 2014): Programming movement and behavior of mobile robots for human-machine interaction studies.
+
+**koch.codes** — Stuttgart
+- Founder (Jul 2011 – Aug 2017): Ran an independent web business during university.
+
+**Albstadt-Sigmaringen University** — Albstadt
+- R&D Assistant (Oct 2016 – Feb 2017): Algorithm development for learning technical processes with artificial neural networks and automatic generation of SystemC modules.
+- R&D Student (Apr 2016 – Sep 2016): Preparation of test objects for digital forensics examinations of the Federal Criminal Police Office (BKA).
+
+## Publications
+
+Research in Agentic AI, cybersecurity, and AI-augmented engineering:
+
+- arXiv:2606.16649 (Jun 2026) — "The Integrator Advantage: Controlled Agentic AI for Small and Medium-Sized Companies" — Christopher Koch, Joshua A. Wellbrock — https://arxiv.org/abs/2606.16649
+- arXiv:2605.20456 (May 2026) — "Agentic Agile-V: From Vibe Coding to Verified Engineering in Software and Hardware Development" — Christopher Koch — https://arxiv.org/abs/2605.20456
+- arXiv:2605.06713 (May 2026) — "Agentic AI and the Industrialization of Cyber Offense: Forecast, Consequences, and Defensive Priorities for Enterprises and the Mittelstand" — Christopher Koch — https://arxiv.org/abs/2605.06713
+- arXiv:2604.19818 (Apr 2026) — "Beyond Task Success: An Evidence-Synthesis Framework for Evaluating, Governing, and Orchestrating Agentic AI" — Christopher Koch, Joshua Andreas Wellbrock — https://arxiv.org/abs/2604.19818
+- arXiv:2604.05229 (Apr 2026) — "From Governance Norms to Enforceable Controls: A Layered Translation Method for Runtime Guardrails in Agentic AI" — Christopher Koch — https://arxiv.org/abs/2604.05229
+- arXiv:2603.29681 (Mar 2026) — "Beyond the Steeper Curve: AI-Mediated Metacognitive Decoupling and the Limits of the Dunning-Kruger Metaphor" — Christopher Koch — https://arxiv.org/abs/2603.29681
+- arXiv:2602.20684 (Feb 2026) — "Agile V: A Compliance-Ready Framework for AI-Augmented Engineering — From Concept to Audit-Ready Delivery" — Christopher Koch, Joshua Andreas Wellbrock — https://arxiv.org/abs/2602.20684
+
+## Awards
+
+Merck Award (2023); Chemical & Pharmaceutical Development Silent Hero Award (2020); code-2-cloud Hackathon Winner, Accenture/AWS/Merck (2019); ESA Space Solutions Prize (2018); ESA Overall Winner — Space For Inspiration Conference (2018); Sustainable Exploration Masters Winner, Airbus/Air Liquide/Merck (2018); Hack a Bot Challenge Winner, Microsoft/Merck (2018); Hack a Bot Overall Winner, Microsoft/Merck (2018).
+
+## Certifications
+
+Architecting on AWS (AWS, 2022); Taking the Lead (Janus GmbH & Co. KG, 2021); Rhetorik: Mit guten Argumenten überzeugen (PMI, 2021); Inspirational Leadership Skills (Chris Croft & Udemy, 2020); Leadership Fundamentals (LinkedIn, 2020); Professional Scrum Master I (Scrum.org); SAFe Agile (Scaled Agile); Computer Science Principles (Harvard University); Kenntnisnachweis § 21a LuftVO — Flugmodelle (Bundesrepublik Deutschland, 2017).
+
+## Notes for agents
+
+- The full site (https://koch.codes/) is a client-rendered Vue 3 SPA; this file exists so agents and crawlers get accurate content without executing JavaScript.
+- The site is available in German (default) and English (toggle in the UI); this file is in English.
+- robots.txt (https://koch.codes/robots.txt) explicitly permits AI/LLM crawlers.
+- For legal/imprint information (German TMG requirements), see the #impressum section on the site.
