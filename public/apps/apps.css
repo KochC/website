@@ -90,7 +90,7 @@ h1 {
 .meta {
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin: -24px 0 32px;
+  margin: 0 0 32px;
 }
 
 h2 {
