@@ -1,0 +1,188 @@
+/* Shared stylesheet for /apps/* micro-sites (app landing, privacy, support
+   pages). Plain CSS, no build step: these pages are static HTML served
+   as-is by Vite's public/ passthrough, independent of the Vue app.
+
+   Each page sets its own accent color by overriding --accent (and
+   optionally --accent-soft) in a small inline <style> block, so every app
+   keeps a distinct identity while sharing layout, spacing, and type. */
+
+:root {
+  --bg: #fafaf9;
+  --bg-elevated: #ffffff;
+  --text: #020617;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #070b11;
+    --bg-elevated: #0d131c;
+    --text: #ffffff;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent-soft: rgba(37, 99, 235, 0.16);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+.back:hover { color: var(--text); }
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.app-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  margin: 0 0 40px;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: -24px 0 32px;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin: 32px 0 8px;
+  letter-spacing: -0.01em;
+}
+
+p, li {
+  color: var(--text-secondary);
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+li { margin: 4px 0; }
+
+a {
+  color: var(--accent);
+}
+
+.card {
+  display: block;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin: 14px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+.card:hover {
+  border-color: var(--accent);
+}
+.card h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+.card p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+.card .arrow {
+  color: var(--accent);
+}
+
+.pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 24px;
+  font-size: 0.9rem;
+}
+th, td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+footer a { color: var(--text-muted); }
+footer a:hover { color: var(--accent); }
+
+.grid {
+  display: grid;
+  gap: 14px;
+}
