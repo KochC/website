@@ -7,45 +7,70 @@
 <meta name="description" content="Privacy policies and support pages for Christopher Koch's iOS apps: FreeSlots and Sundown.">
 <link rel="stylesheet" href="/apps/apps.css">
 <style>
+  :root { --accent: #2563eb; --accent-soft: rgba(37,99,235,.1); }
   .wrap { max-width: 760px; }
-  .app-row { display: flex; align-items: center; gap: 16px; }
+  .app-row { display: flex; align-items: flex-start; gap: 16px; }
   .app-row img { width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--border); flex-shrink: 0; }
-  .app-row .links { display: flex; gap: 14px; margin-top: 4px; font-size: 0.85rem; }
+  .app-row h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .app-row h3 a { color: var(--text); text-decoration: none; }
+  .app-row h3 a:hover { color: var(--accent); }
+  .app-row p { margin: 0 0 10px; font-size: 0.92rem; }
+  .app-row .meta-row { margin: 0 0 14px; font-size: 0.78rem; }
+  .app-row .footer-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <p class="back"><a href="/">&larr; koch.codes</a></p>
   <h1>Apps</h1>
-  <p class="tagline">Privacy policies and support pages for my iOS apps. Every app is
-  built local-first: no accounts, no ads, no third-party analytics, and no
-  data leaves your device unless the app itself is explicitly a sharing tool
-  (e.g. copying text you choose to send).</p>
+  <p class="tagline">Small, focused iPhone apps. Every app here is built
+  local-first: no accounts, no ads, no third-party analytics, and nothing
+  leaves your device unless the app is explicitly a sharing tool (e.g.
+  copying text you choose to send). None are live on the App Store yet —
+  this page will link to each listing as they ship.</p>
 
   <div class="grid">
-    <a class="card app-row" href="/apps/freeslots/">
+    <div class="card app-row">
       <img src="/apps/freeslots/icon.png" alt="">
       <div>
-        <h3>FreeSlots</h3>
+        <h3><a href="/apps/freeslots/">FreeSlots</a></h3>
         <p>Turns your calendars into shareable free time — without exposing event details.</p>
-        <div class="links">
+        <p class="meta-row">
+          <span>iOS 18+</span>
+          <span>€1.99 one-time</span>
+          <span>Productivity</span>
+        </p>
+        <div class="footer-links">
+          <a class="store-badge disabled small" href="#" aria-disabled="true" tabindex="-1">
+            <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Coming soon</small><strong>App Store</strong></span>
+          </a>
           <a href="/apps/freeslots/privacy.html">Privacy</a>
           <a href="/apps/freeslots/support.html">Support</a>
         </div>
       </div>
-    </a>
+    </div>
 
-    <a class="card app-row" href="/apps/sundown/">
+    <div class="card app-row" style="--accent:#ff9e3d; --accent-soft: rgba(255,158,61,.12);">
       <img src="/apps/sundown/icon.png" alt="">
       <div>
-        <h3>Sundown</h3>
+        <h3><a href="/apps/sundown/">Sundown</a></h3>
         <p>Your iPhone becomes a bedside sunset — warm light, then deep red, then dark.</p>
-        <div class="links">
+        <p class="meta-row">
+          <span>iOS 18+</span>
+          <span>Free + optional Pro unlock</span>
+          <span>Lifestyle</span>
+        </p>
+        <div class="footer-links">
+          <a class="store-badge disabled small" href="#" aria-disabled="true" tabindex="-1">
+            <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Coming soon</small><strong>App Store</strong></span>
+          </a>
           <a href="/apps/sundown/privacy.html">Privacy</a>
           <a href="/apps/sundown/support.html">Support</a>
         </div>
       </div>
-    </a>
+    </div>
   </div>
 
   <footer>
