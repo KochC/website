@@ -186,3 +186,97 @@ footer a:hover { color: var(--accent); }
   display: grid;
   gap: 14px;
 }
+
+/* App Store badge. Classic black badge; used as a disabled "coming soon"
+   placeholder until each app's App Store URL exists — swap the href in
+   each page once the app is live. */
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #000;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 8px 14px 8px 12px;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.store-badge svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.store-badge small {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+.store-badge strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.store-badge.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+.store-badge.small {
+  padding: 5px 10px 5px 8px;
+  border-radius: 8px;
+  gap: 7px;
+}
+.store-badge.small svg { width: 16px; height: 16px; }
+.store-badge.small small { font-size: 0.52rem; }
+.store-badge.small strong { font-size: 0.8rem; }
+.store-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0 32px;
+}
+.coming-soon {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Compact "requirements" line: platform · price · category, dot-separated. */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 28px;
+}
+.meta-row span:not(:last-child)::after {
+  content: '\00B7';
+  margin-left: 10px;
+  color: var(--border);
+}
+
+/* Feature list with a check-style marker instead of a plain bullet. */
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0;
+}
+.feature-list li {
+  position: relative;
+  padding-left: 26px;
+  margin: 8px 0;
+}
+.feature-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+}
