@@ -6,7 +6,18 @@
 <title>DropRoute — Save to Folder</title>
 <meta name="description" content="DropRoute saves any file from the iPhone and iPad share sheet into your favorite Files folders with one tap. No account, fully offline.">
 <link rel="stylesheet" href="/apps/apps.css">
-<style>:root { --accent: #2a5cf0; --accent-soft: rgba(42,92,240,.1); }</style>
+<style>
+  :root { --accent: #2a5cf0; --accent-soft: rgba(42,92,240,.1); }
+  .demo { display: flex; justify-content: center; margin: 28px 0 8px; }
+  .demo video { width: 260px; max-width: 70vw; border-radius: 34px; border: 6px solid #111827;
+    box-shadow: 0 18px 40px rgba(15,23,42,.25); background: #fff; }
+  .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 8px 4px 18px; margin: 0 -4px; }
+  .shots figure { margin: 0; flex: 0 0 200px; scroll-snap-align: start; text-align: center; }
+  .shots img { width: 200px; height: auto; border-radius: 22px; border: 1px solid var(--border);
+    box-shadow: 0 6px 18px rgba(15,23,42,.12); display: block; }
+  .shots figcaption { font-size: .85rem; color: var(--text-secondary); margin-top: 8px; }
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -32,6 +43,21 @@
       <span><small>Coming soon to the</small><strong>App Store</strong></span>
     </a>
     <span class="coming-soon">Not yet released — this page will link to the App Store listing once DropRoute ships.</span>
+  </div>
+
+  <div class="demo">
+    <video src="media/droproute-demo.mp4" poster="media/droproute-demo-poster.jpg"
+      autoplay muted loop playsinline preload="metadata"
+      aria-label="Demo: a PDF and a photo are each saved to a folder with one tap from the share sheet"></video>
+  </div>
+
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <figure><img src="media/screen-1-home.jpg" alt="List of routes: Invoices, Receipts, Project Alpha, NAS Scans" loading="lazy"><figcaption>Your favorite folders</figcaption></figure>
+    <figure><img src="media/screen-2-share.jpg" alt="Share sheet with big folder buttons" loading="lazy"><figcaption>Share &rarr; tap a folder</figcaption></figure>
+    <figure><img src="media/screen-3-saved.jpg" alt="Confirmation: Saved to Invoices" loading="lazy"><figcaption>Saved. Done.</figcaption></figure>
+    <figure><img src="media/screen-4-editor.jpg" alt="Route editor with a date and name file template" loading="lazy"><figcaption>Smart file names (Pro)</figcaption></figure>
+    <figure><img src="media/screen-5-paywall.jpg" alt="DropRoute Pro: one-time purchase" loading="lazy"><figcaption>One-time Pro, no subscription</figcaption></figure>
   </div>
 
   <a class="card" href="support.html">
