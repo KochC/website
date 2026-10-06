@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cronlet — Support</title>
+<link rel="stylesheet" href="/apps/apps.css">
+<style>:root { --accent: #e8792f; --accent-soft: rgba(232,121,47,.12); }</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="index.html">&larr; Cronlet</a></p>
+  <span class="pill">Support</span>
+  <h1>Support</h1>
+  <p class="tagline">We're happy to help.</p>
+
+  <div class="card">
+    <p style="margin:0">Email <a href="mailto:feedback@koch.codes">feedback@koch.codes</a>
+    and we'll get back to you. Please include your iPhone model and iOS
+    version if you're reporting a problem.</p>
+  </div>
+
+  <h2>How does Cronlet run my shortcuts?</h2>
+  <p>iOS doesn't let apps start shortcuts directly. Cronlet sends a
+  notification when a job is due, and <strong>one Shortcuts automation</strong>
+  (not a new shortcut) reacts to it and runs the shortcut that is due. You set
+  it up once; it works for all jobs.</p>
+
+  <h2>Setting up the automation (once)</h2>
+  <ol>
+    <li>Shortcuts app &rarr; <strong>Automation</strong> tab (not "Shortcuts") &rarr; <strong>+</strong>.</li>
+    <li>Trigger: app notifications &rarr; <strong>Cronlet</strong> &rarr; <strong>Run Immediately</strong> &rarr; New Blank Automation.</li>
+    <li>Add Cronlet's <strong>Get Due Shortcut</strong> (leave the field empty).</li>
+    <li>Add <strong>Get My Shortcuts</strong>.</li>
+    <li>Add <strong>Repeat with Each</strong> over the result of Get My Shortcuts.</li>
+    <li>Inside the loop: <strong>If</strong> Repeat Item &rarr; Name &rarr; is &rarr; result of Get Due Shortcut.</li>
+    <li>Inside the If: <strong>Run Shortcut</strong> &rarr; Repeat Item.</li>
+  </ol>
+  <p>Test it: create a job "Once" in 1 minute and lock your iPhone.</p>
+
+  <h2>"Shortcut not found"</h2>
+  <p>The job's shortcut name must match the name in the Shortcuts app exactly,
+  including spaces and capitalisation. Also make sure the automation uses the
+  loop above — "Run Shortcut" can't take a name directly.</p>
+
+  <h2>Requirements</h2>
+  <p>Notification-triggered automations need iOS 27 or later. Without the
+  automation, tap a Cronlet notification to run the shortcut.</p>
+
+  <h2>Does it work offline?</h2>
+  <p>Yes. Cronlet needs no internet connection and no account.</p>
+
+  <h2>Privacy</h2>
+  <p>Cronlet collects no data. See the <a href="privacy.html">Privacy Policy</a>.</p>
+
+  <footer>&copy; Christopher Koch &middot; <a href="index.html">Cronlet</a> &middot; <a href="privacy.html">Privacy</a></footer>
+</div>
+</body>
+</html>
