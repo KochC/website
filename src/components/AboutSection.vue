@@ -12,6 +12,7 @@ const { t } = useI18n()
         <div class="about-text">
           <p>{{ t('about.p1') }}</p>
           <p>{{ t('about.p2') }}</p>
+          <p>{{ t('about.p_regulated') }}</p>
           <p class="about-focus">{{ t('about.p3') }}</p>
         </div>
         <div class="about-sidebar">

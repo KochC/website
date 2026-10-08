@@ -29,6 +29,7 @@ const de = {
     title: 'Über mich',
     p1: 'Technologieführer mit Expertise in Embedded Systems, Cloud-Architektur, KI-Engineering und digitaler Transformation. Ich arbeite über den gesamten Technologiestack — von Low-Level-Firmware und Hardware-Prototyping über Cloud-Plattformen wie AWS, Azure und Palantir Foundry bis hin zu KI-gestützten Systemen und sicherer Architektur.',
     p2: 'Ich leite und orchestriere ein großes Team von KI-Agenten in verschiedenen technischen Bereichen und nutze sie, um Entwicklung, Forschung, Automatisierung, Dokumentation und Problemlösung zu beschleunigen. Darüber hinaus arbeite ich als unabhängiger Forscher im Bereich Agentic AI und erforsche Multi-Agenten-Systeme, autonome Workflows und KI-gesteuertes Engineering.',
+    p_regulated: 'Ich bringe Produkte bis zur Marktreife: Ich habe u. a. CE-zertifizierte Hardware entwickelt sowie Software für validierte GxP-Umgebungen nach GAMP 5 gebaut und in ISO-27001-konformen Umgebungen gearbeitet — inklusive der dafür nötigen Anforderungs-, Test- und Dokumentationsprozesse, Rückverfolgbarkeit und Audit-Readiness.',
     p3: 'Mein Fokus liegt auf dem Bau zuverlässiger, skalierbarer und wartbarer Systeme — von eingebetteten Geräten bis hin zu Cloud-Infrastruktur und autonomer Intelligenz — insbesondere in regulierten Technologieumgebungen.',
     skills_title: 'Skills & Kompetenzen',
     languages_title: 'Sprachen',
@@ -38,6 +39,7 @@ const de = {
     'AI / Agentic AI', 'AWS', 'Azure', 'Palantir Foundry',
     'System Architecture', 'Cloud Platform Engineering',
     'Cryptography & Security', 'SDK Integration', 'Prototyping',
+    'CE-Konformität', 'Computer System Validation (CSV)', 'GxP', 'GAMP 5', 'ISO 27001',
     'Team Leadership', 'Negotiation', 'Delegation',
   ],
   languages: [
@@ -55,7 +57,7 @@ const de = {
           {
             title: 'Lead Engineer | M-Trust™ | Science & Technology',
             period: 'Dez. 2023 – heute',
-            description: 'End-to-End-Entwicklung eingebetteter Systeme, Hardware/Software-Prototyping, sichere Systemarchitektur mit Kryptografie und digitalen Signaturen. Beschleunigung von Prototyp-zu-Pro-Produkt-Übergängen in regulierten Industrien.',
+            description: 'End-to-End-Entwicklung eingebetteter Systeme, Hardware/Software-Prototyping, sichere Systemarchitektur mit Kryptografie und digitalen Signaturen. Beschleunigung von Prototyp-zu-Produkt-Übergängen in regulierten Industrien — von CE-zertifizierter Hardware bis zu Software für validierte GxP-Umgebungen (GAMP 5).',
           },
           {
             title: 'Senior Data Engineer | Palantir Foundry Architect',
@@ -194,6 +196,7 @@ const en = {
     title: 'About Me',
     p1: 'Technology leader with expertise in embedded systems, cloud architecture, AI engineering, and digital transformation. I work across the full technology stack — from low-level firmware and hardware prototyping to cloud platforms including AWS, Azure, and Palantir Foundry, through to AI-powered systems and secure architecture.',
     p2: 'I lead and orchestrate a large team of AI agents across various technical domains, using them to accelerate development, research, automation, documentation, and problem-solving. Additionally, I work as an independent researcher in the field of Agentic AI, exploring multi-agent systems, autonomous workflows, and AI-driven engineering.',
+    p_regulated: 'I take products all the way to market: among other things, I have built CE-certified hardware and software for validated GxP environments following GAMP 5, and worked within ISO 27001-compliant environments — including the requirements, verification, and documentation processes, traceability, and audit readiness that come with it.',
     p3: 'My focus is on building reliable, scalable, and maintainable systems — from embedded devices to cloud infrastructure and autonomous intelligence — especially in regulated technology environments.',
     skills_title: 'Skills & Competencies',
     languages_title: 'Languages',
@@ -203,6 +206,7 @@ const en = {
     'AI / Agentic AI', 'AWS', 'Azure', 'Palantir Foundry',
     'System Architecture', 'Cloud Platform Engineering',
     'Cryptography & Security', 'SDK Integration', 'Prototyping',
+    'CE Conformity', 'Computer System Validation (CSV)', 'GxP', 'GAMP 5', 'ISO 27001',
     'Team Leadership', 'Negotiation', 'Delegation',
   ],
   languages: [
@@ -220,7 +224,7 @@ const en = {
           {
             title: 'Lead Engineer | M-Trust™ | Science & Technology',
             period: 'Dec 2023 – Present',
-            description: 'End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries.',
+            description: 'End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries — from CE-certified hardware to software for validated GxP environments (GAMP 5).',
           },
           {
             title: 'Senior Data Engineer | Palantir Foundry Architect',
