@@ -17,16 +17,18 @@ Technology leader with expertise in embedded systems, cloud architecture, AI eng
 
 Leads and orchestrates a large team of AI agents across various technical domains, using them to accelerate development, research, automation, documentation, and problem-solving. Also works as an independent researcher in Agentic AI, exploring multi-agent systems, autonomous workflows, and AI-driven engineering.
 
+Regulated delivery: has built CE-certified hardware and software for validated GxP environments following GAMP 5, and worked within ISO 27001-compliant environments, including the requirements, verification, documentation, traceability, and audit-readiness processes these require.
+
 Focus: building reliable, scalable, and maintainable systems — from embedded devices to cloud infrastructure and autonomous intelligence — especially in regulated technology environments.
 
-Skills: Embedded Systems, Firmware (C/C++), Hardware Design, AI / Agentic AI, AWS, Azure, Palantir Foundry, System Architecture, Cloud Platform Engineering, Cryptography & Security, SDK Integration, Prototyping, Team Leadership, Negotiation, Delegation.
+Skills: Embedded Systems, Firmware (C/C++), Hardware Design, AI / Agentic AI, AWS, Azure, Palantir Foundry, System Architecture, Cloud Platform Engineering, Cryptography & Security, SDK Integration, Prototyping, CE Conformity, Computer System Validation (CSV), GxP, GAMP 5, ISO 27001, Team Leadership, Negotiation, Delegation.
 
 Languages: German (native), English (fluent, C1), French (elementary).
 
 ## Experience
 
 **Merck Group** — Darmstadt
-- Lead Engineer | M-Trust™ | Science & Technology (Dec 2023 – Present): End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries.
+- Lead Engineer | M-Trust™ | Science & Technology (Dec 2023 – Present): End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries — from CE-certified hardware to software for validated GxP environments (GAMP 5).
 - Senior Data Engineer | Palantir Foundry Architect (Jan 2022 – Dec 2023): Technical lead for platform development, custom tools and integrations for data pipelines, analytics, and visualization.
 - Leader of the Makerspace | Innovation Center (Nov 2020 – Jan 2022): Led the Makerspace at the Merck Innovation Center; consulted on multi-million-dollar innovation projects; built prototypes for future technologies.
 - Innovation Manager | Innovation Center (Mar 2019 – Nov 2020): Led and supported innovation projects in computer science and engineering.
