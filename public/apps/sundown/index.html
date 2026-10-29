@@ -20,71 +20,72 @@
   @media (prefers-color-scheme: dark) {
     :root { --bg: #0b0709; --bg-elevated: #1a100b; --border: rgba(255,158,61,.18); }
   }
-  .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 8px 4px 18px; margin: 0 -4px; }
-  .shots figure { margin: 0; flex: 0 0 200px; scroll-snap-align: start; text-align: center; }
-  .shots img { width: 200px; height: auto; border-radius: 22px; border: 1px solid var(--border);
-    box-shadow: 0 6px 18px rgba(15,23,42,.12); display: block; }
-  .shots figcaption { font-size: .85rem; color: var(--text-secondary); margin-top: 8px; }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap wide">
   <p class="back"><a href="/apps/">&larr; Apps</a></p>
-  <img class="hero" src="media/hero.jpg" width="1600" height="686" alt="Sundown: A gentle sunset at your bedside.">
-  <div class="app-header">
-    <img class="app-icon" src="icon.png" alt="Sundown icon">
-    <div>
-      <h1>Sundown</h1>
-      <p class="tagline" style="margin-bottom:0">A quieter end to the day.</p>
+
+  <main>
+  <section class="app-hero" aria-labelledby="app-name">
+    <div class="app-hero-text">
+      <img class="app-icon" src="icon.png" width="96" height="96" alt="Sundown app icon">
+      <h1 id="app-name">Sundown</h1>
+      <p class="tagline">A quieter end to the day.</p>
+      <p class="intro">A bedside sunset light: warm light, then deep red, then dark. Collects no data, works fully offline.</p>
+      <div class="store-row">
+      <a class="store-badge" href="https://apps.apple.com/us/app/sundown-sleep-light/id6807182599">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+      </div>
+      <ul class="chips" aria-label="Details"><li>iPhone</li><li>iOS 18 or later</li><li>Lifestyle</li></ul>
     </div>
-  </div>
+    <div class="device">
+      <img src="media/screen-1-ready.jpg" width="414" height="900" alt="Sundown start screen with sunset length" fetchpriority="high">
+    </div>
+  </section>
 
-  <p class="meta-row">
-    <span>iPhone</span>
-    <span>Requires iOS 18 or later</span>
-    <span>Lifestyle</span>
-  </p>
+  <section class="section about">
+    <div class="prose">
+      <h2 class="section-title">What is Sundown?</h2>
+      <p>Your iPhone becomes a bedside sunset — warm light, then deep red, then
+      dark. Stand it on a bedside surface, tap Start, and let the room dim gently
+      as you fall asleep.</p>
+    </div>
+    <div>
+      <h2 class="section-title">Highlights</h2>
+      <ul class="features">
+          <li>Gentle warm-to-red-to-dark sunset using your screen and rear light</li>
+          <li>Preset lengths plus a one-tap "+10 min" extension</li>
+          <li>Optional bedtime reminder notification — it only reminds you, it never starts a sunset on its own</li>
+          <li><strong>Sundown Pro</strong> adds Shortcuts/Siri Start, custom sunset profiles (Gentle, Deep Red, Long Evening), and custom extension lengths from 3–30 minutes</li>
+          <li>No account, no ads, no analytics — works fully offline</li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="store-row">
-    <a class="store-badge" href="https://apps.apple.com/us/app/sundown-sleep-light/id6807182599">
-      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span><small>Download on the</small><strong>App Store</strong></span>
+  <section class="section" aria-labelledby="shots-title">
+    <h2 class="section-title" id="shots-title">Screenshots</h2>
+    <div class="shots few">
+      <figure><img src="media/screen-1-ready.jpg" width="414" height="900" alt="Sundown start screen with sunset length" loading="lazy"><figcaption>Pick a length, tap Start</figcaption></figure>
+      <figure><img src="media/screen-2-controls.jpg" width="414" height="900" alt="Controls: time left, +10 minutes, Brighter, End" loading="lazy"><figcaption>Tap for quick controls</figcaption></figure>
+      <figure><img src="media/screen-3-room-light.jpg" width="414" height="900" alt="Room Light settings: dim a HomeKit light along with the wall glow" loading="lazy"><figcaption>Dim a HomeKit light too</figcaption></figure>
+      <figure><img src="media/screen-4-wallglow.jpg" width="414" height="900" alt="Wall glow calibration slider" loading="lazy"><figcaption>Calibrate once for your room</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section link-cards" aria-label="Help and privacy">
+    <a class="card" href="support.html">
+      <h3>Support <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+      <p>Questions or feedback? Here's how to reach us.</p>
     </a>
-  </div>
-
-  <h2>Screenshots</h2>
-  <div class="shots">
-    <figure><img src="media/screen-1-ready.jpg" alt="Sundown start screen with sunset length" loading="lazy"><figcaption>Pick a length, tap Start</figcaption></figure>
-    <figure><img src="media/screen-2-sunset.jpg" alt="Screen glowing warm orange mid-sunset" loading="lazy"><figcaption>Warm evening light</figcaption></figure>
-    <figure><img src="media/screen-3-red.jpg" alt="Screen dimmed to a deep red afterglow" loading="lazy"><figcaption>Deep red, then dark</figcaption></figure>
-    <figure><img src="media/screen-4-controls.jpg" alt="Controls: time left, +10 minutes, Brighter, End" loading="lazy"><figcaption>Tap for quick controls</figcaption></figure>
-    <figure><img src="media/screen-5-wallglow.jpg" alt="Wall glow calibration slider" loading="lazy"><figcaption>Calibrate once for your room</figcaption></figure>
-  </div>
-
-  <a class="card" href="support.html">
-    <h3>Support &rarr;</h3>
-    <p>Questions or feedback? Here's how to reach us.</p>
-  </a>
-
-  <a class="card" href="privacy.html">
-    <h3>Privacy Policy &rarr;</h3>
-    <p>Sundown collects no data. Everything stays on your device.</p>
-  </a>
-
-  <h2>What is Sundown?</h2>
-  <p>Your iPhone becomes a bedside sunset — warm light, then deep red, then
-  dark. Stand it on a bedside surface, tap Start, and let the room dim gently
-  as you fall asleep.</p>
-
-  <h2>Highlights</h2>
-  <ul class="feature-list">
-    <li>Gentle warm-to-red-to-dark sunset using your screen and rear light</li>
-    <li>Preset lengths plus a one-tap "+10 min" extension</li>
-    <li>Optional bedtime reminder notification — it only reminds you, it never starts a sunset on its own</li>
-    <li><strong>Sundown Pro</strong> adds Shortcuts/Siri Start, custom sunset profiles (Gentle, Deep Red, Long Evening), and custom extension lengths from 3–30 minutes</li>
-    <li>No account, no ads, no analytics — works fully offline</li>
-  </ul>
+    <a class="card" href="privacy.html">
+      <h3>Privacy Policy <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+      <p>Sundown collects no data. Everything stays on your device.</p>
+    </a>
+  </section>
+  </main>
 
   <footer>&copy; Christopher Koch &middot; Sundown is a local, offline app with no account and no tracking.</footer>
 </div>

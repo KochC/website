@@ -1,143 +1,198 @@
-/* Shared stylesheet for /apps/* micro-sites (app landing, privacy, support
-   pages). Plain CSS, no build step: these pages are static HTML served
-   as-is by Vite's public/ passthrough, independent of the Vue app.
+/* Shared stylesheet for /apps/* micro-sites (overview, app landing pages,
+   privacy and support pages). Plain CSS, no build step: these pages are
+   static HTML served as-is by Vite's public/ passthrough, independent of
+   the Vue app.
 
-   Each page sets its own accent color by overriding --accent (and
-   optionally --accent-soft) in a small inline <style> block, so every app
-   keeps a distinct identity while sharing layout, spacing, and type. */
+   Each page (or overview card) sets its own accent by overriding --accent
+   (and optionally --accent-soft) in a small inline style, so every app keeps
+   a distinct identity while sharing layout, spacing, and type.
+
+   Layout widths:
+     .wrap        720px reading column (privacy / support pages)
+     .wrap.wide  1040px product pages and the overview grid */
 
 :root {
+  color-scheme: light dark;
+
   --bg: #fafaf9;
   --bg-elevated: #ffffff;
   --text: #020617;
   --text-secondary: #475569;
   --text-muted: #64748b;
   --border: #e2e8f0;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.08);
   --accent: #2563eb;
   --accent-soft: rgba(37, 99, 235, 0.1);
+
+  /* Spacing scale (4px base). */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  --gutter: 24px;
+  --radius: 18px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue',
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'Helvetica Neue', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #070b11;
-    --bg-elevated: #0d131c;
+    --bg-elevated: #0f151f;
     --text: #ffffff;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
     --border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.35);
     --accent-soft: rgba(37, 99, 235, 0.16);
   }
 }
 
-* {
-  box-sizing: border-box;
+@media (max-width: 560px) {
+  :root { --gutter: 20px; }
 }
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Helvetica, Arial, sans-serif;
+  font-family: var(--font);
   font-size: 17px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
+img { max-width: 100%; }
+
+/* ---------- Layout ---------- */
+
 .wrap {
-  max-width: 720px;
+  max-width: calc(720px + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 56px 24px 96px;
+  padding: var(--s-5) var(--gutter) var(--s-8);
+}
+.wrap.wide { max-width: calc(1040px + 2 * var(--gutter)); }
+
+section { margin: 0; }
+.section { margin-top: var(--s-9); }
+@media (max-width: 859px) {
+  .section { margin-top: var(--s-8); }
 }
 
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-bottom: 32px;
-}
-.back:hover { color: var(--text); }
+/* ---------- Type ---------- */
 
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-.app-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  flex-shrink: 0;
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--text);
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: 2rem;
-  letter-spacing: -0.02em;
-  margin: 0 0 4px;
-  line-height: 1.2;
+  font-size: 2.25rem;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--s-2);
 }
 
+h2 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: var(--s-6) 0 var(--s-2);
+}
+
+/* Large section heading on product pages / overview. */
+.section-title {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-5);
+}
+
+h3 {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0 0 var(--s-1);
+}
+
+p, li { color: var(--text-secondary); }
+p { margin: 0 0 var(--s-4); }
+strong { color: var(--text); font-weight: 600; }
+
+ul, ol { padding-left: 22px; }
+li { margin: var(--s-1) 0; }
+
 .tagline {
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  margin: 0 0 40px;
+  margin: 0 0 var(--s-6);
 }
 
 .meta {
   color: var(--text-muted);
   font-size: 0.9rem;
-  margin: 0 0 32px;
+  margin: 0 0 var(--s-6);
 }
 
-h2 {
-  font-size: 1.15rem;
-  margin: 32px 0 8px;
-  letter-spacing: -0.01em;
-}
+.prose { max-width: 65ch; }
 
-p, li {
-  color: var(--text-secondary);
-}
-
-ul, ol {
-  padding-left: 20px;
-}
-li { margin: 4px 0; }
+/* ---------- Links & focus ---------- */
 
 a {
   color: var(--accent);
+  /* Darken the accent in light mode / lighten it in dark mode so text links
+     stay readable even for light accents (e.g. Sundown orange). */
+  color: color-mix(in srgb, var(--accent) 68%, var(--text));
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-.card {
-  display: block;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px 22px;
-  margin: 14px 0;
+/* Quiet link used in cards / link rows: accent colour, underline on hover. */
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 500;
   text-decoration: none;
-  color: inherit;
-  transition: border-color 150ms ease, transform 150ms ease;
 }
-.card:hover {
-  border-color: var(--accent);
+.link:hover { text-decoration: underline; }
+
+/* ---------- Back link ---------- */
+
+.back {
+  margin: 0 0 var(--s-5);
+  font-size: 0.95rem;
 }
-.card h3 {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-  color: var(--text);
+.back a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  min-height: 44px;
+  color: var(--text-muted);
+  text-decoration: none;
 }
-.card p {
-  margin: 0;
-  font-size: 0.92rem;
-}
-.card .arrow {
-  color: var(--accent);
-}
+.back a:hover { color: var(--text); }
+
+/* ---------- Pills & chips ---------- */
 
 .pill {
   display: inline-block;
@@ -145,17 +200,77 @@ a {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: color-mix(in srgb, var(--accent) 80%, var(--text));
   background: var(--accent-soft);
   border-radius: 999px;
   padding: 4px 12px;
-  margin-bottom: 16px;
+  margin-bottom: var(--s-4);
 }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.chips li {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  border-radius: 999px;
+  padding: 7px 12px;
+  white-space: nowrap;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  display: block;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+  margin: var(--s-4) 0;
+  color: inherit;
+  text-decoration: none;
+}
+a.card { transition: border-color 150ms ease, box-shadow 150ms ease; }
+a.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.card h3 { color: var(--text); }
+.card p { margin: 0; font-size: 0.95rem; }
+.card .arrow { color: var(--accent); }
+
+/* Support + Privacy cards at the end of a product page. */
+.link-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+.link-cards .card { margin: 0; }
+.link-cards h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-3);
+}
+@media (max-width: 640px) {
+  .link-cards { grid-template-columns: 1fr; }
+}
+
+/* ---------- Tables (privacy pages) ---------- */
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 12px 0 24px;
+  margin: var(--s-3) 0 var(--s-5);
   font-size: 0.9rem;
 }
 th, td {
@@ -172,41 +287,36 @@ th {
   letter-spacing: 0.04em;
 }
 
+/* ---------- Footer ---------- */
+
 footer {
-  margin-top: 56px;
-  padding-top: 20px;
+  margin-top: var(--s-8);
+  padding-top: var(--s-5);
   border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 0.85rem;
 }
 footer a { color: var(--text-muted); }
-footer a:hover { color: var(--accent); }
+footer a:hover { color: var(--text); }
 
-.grid {
-  display: grid;
-  gap: 14px;
-}
+/* ---------- App Store badge ---------- */
 
-/* App Store badge. Classic black badge; used as a disabled "coming soon"
-   placeholder until each app's App Store URL exists — swap the href in
-   each page once the app is live. */
 .store-badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-height: 48px;
   background: #000;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  padding: 8px 14px 8px 12px;
+  border-radius: 12px;
+  padding: 7px 16px 7px 13px;
   text-decoration: none;
-  line-height: 1.2;
+  line-height: 1.15;
+  transition: transform 150ms ease;
 }
-.store-badge svg {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-}
+.store-badge:hover { text-decoration: none; transform: translateY(-1px); }
+.store-badge svg { width: 22px; height: 22px; flex-shrink: 0; }
 .store-badge small {
   display: block;
   font-size: 0.62rem;
@@ -215,74 +325,280 @@ footer a:hover { color: var(--accent); }
 }
 .store-badge strong {
   display: block;
+  color: #fff;
   font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
-.store-badge.disabled {
-  opacity: 0.5;
-  cursor: default;
-  pointer-events: none;
-}
+.store-badge.disabled { opacity: 0.5; cursor: default; pointer-events: none; }
 .store-badge.small {
-  padding: 5px 10px 5px 8px;
-  border-radius: 8px;
-  gap: 7px;
+  min-height: 44px;
+  padding: 5px 12px 5px 10px;
+  border-radius: 10px;
+  gap: 8px;
 }
-.store-badge.small svg { width: 16px; height: 16px; }
-.store-badge.small small { font-size: 0.52rem; }
-.store-badge.small strong { font-size: 0.8rem; }
+.store-badge.small svg { width: 18px; height: 18px; }
+.store-badge.small small { font-size: 0.55rem; }
+.store-badge.small strong { font-size: 0.88rem; }
 .store-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--s-3);
   flex-wrap: wrap;
-  margin: 20px 0 32px;
-}
-.coming-soon {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  margin: 0 0 var(--s-5);
 }
 
-/* Compact "requirements" line: platform · price · category, dot-separated. */
-.meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 10px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin: 0 0 28px;
+/* ---------- Product page: hero ---------- */
+
+.app-hero {
+  display: grid;
+  gap: var(--s-7);
+  align-items: center;
+  padding-top: var(--s-4);
 }
-.meta-row span:not(:last-child)::after {
-  content: '\00B7';
-  margin-left: 10px;
-  color: var(--border);
+@media (min-width: 860px) {
+  .app-hero {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: var(--s-8);
+  }
 }
 
-/* Feature list with a check-style marker instead of a plain bullet. */
-.feature-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 8px 0 0;
+.app-hero-text { max-width: 65ch; }
+
+.app-icon {
+  display: block;
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--s-5);
 }
-.feature-list li {
+
+.app-hero h1 {
+  font-size: clamp(2.5rem, 3vw + 1.5rem, 3.5rem);
+  letter-spacing: -0.035em;
+  margin-bottom: var(--s-2);
+}
+.app-hero .tagline {
+  font-size: clamp(1.25rem, 0.6vw + 1.1rem, 1.5rem);
+  line-height: 1.3;
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--s-3);
+}
+.app-hero .intro {
+  font-size: 1.05rem;
+  margin: 0 0 var(--s-5);
+}
+
+/* Phone mock-up: screenshot inside a dark bezel over a soft accent glow. */
+.device {
   position: relative;
-  padding-left: 26px;
-  margin: 8px 0;
+  justify-self: center;
+  width: min(300px, 78vw);
+  isolation: isolate;
 }
-.feature-list li::before {
+.device::before {
+  content: '';
+  position: absolute;
+  inset: -18% -38%;
+  z-index: -1;
+  background: radial-gradient(closest-side, var(--accent-soft), transparent);
+  background: radial-gradient(closest-side,
+    color-mix(in srgb, var(--accent) 45%, transparent), transparent);
+  filter: blur(8px);
+}
+.device img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 38px;
+  border: 7px solid #0b0b0d;
+  outline: 1px solid rgba(127, 127, 127, 0.35);
+  box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.45),
+    0 12px 24px -12px rgba(15, 23, 42, 0.35);
+  background: #0b0b0d;
+}
+@media (max-width: 859px) {
+  .device { width: min(260px, 70vw); }
+  .device img { border-radius: 34px; border-width: 6px; }
+}
+
+/* ---------- Product page: overview + highlights ---------- */
+
+.about {
+  display: grid;
+  gap: var(--s-6) var(--s-8);
+}
+@media (min-width: 860px) {
+  .about { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+}
+.about .prose p { font-size: 1.05rem; }
+
+.features {
+  list-style: none;
+  margin: 0;
+  padding: var(--s-1) var(--s-5);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.features li {
+  position: relative;
+  margin: 0;
+  padding: var(--s-4) 0 var(--s-4) 34px;
+  border-top: 1px solid var(--border);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+.features li:first-child { border-top: 0; }
+/* Check mark in an accent circle. */
+.features li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.5em;
-  width: 8px;
-  height: 8px;
+  top: calc(var(--s-4) + 1px);
+  width: 20px;
+  height: 20px;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--accent-soft);
+}
+.features li::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: calc(var(--s-4) + 5px);
+  width: 5px;
+  height: 9px;
+  border: solid var(--accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-/* Product page header art (App Store 21:9 asset). Narrow screens crop to the centre safe area. */
-.hero { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 686; object-fit: cover;
-  border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(15,23,42,.14);
-  margin: 4px 0 24px; }
-@media (max-width: 520px) { .hero { aspect-ratio: 4 / 3; border-radius: 16px; } }
+/* ---------- Product page: screenshots ---------- */
+
+.shots {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 210px);
+  justify-content: space-between;
+  gap: var(--s-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.shots.few { justify-content: start; grid-auto-columns: minmax(0, 230px); gap: var(--s-6); }
+.shots figure { margin: 0; }
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--bg-elevated);
+}
+.shots figcaption {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-top: var(--s-3);
+  text-align: center;
+}
+
+/* Below the desktop layout: horizontal scroll-snap strip that bleeds to the
+   screen edges, with gutter padding so the first and last shots aren't cut,
+   and a partially visible next shot that hints at scrolling. */
+@media (max-width: 859px) {
+  .shots,
+  .shots.few {
+    display: flex;
+    gap: var(--s-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding: var(--s-2) var(--gutter) var(--s-4);
+    margin: 0 calc(-1 * var(--gutter));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .shots::-webkit-scrollbar { display: none; }
+  .shots figure {
+    flex: 0 0 min(64vw, 240px);
+    scroll-snap-align: start;
+  }
+}
+
+/* ---------- Overview page ---------- */
+
+.page-intro { max-width: 65ch; margin-bottom: var(--s-7); }
+.page-intro h1 { font-size: clamp(2.5rem, 3vw + 1.5rem, 3.5rem); letter-spacing: -0.035em; }
+.page-intro .tagline { margin: 0; }
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-5);
+}
+@media (max-width: 760px) {
+  .app-grid { grid-template-columns: 1fr; }
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.app-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  box-shadow: var(--shadow);
+}
+.app-card-media { display: block; }
+.app-card-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1600 / 686;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 560px) {
+  /* Narrow cards: crop the 21:9 art to its centre (icon + headline). */
+  .app-card-media img { aspect-ratio: 2 / 1; }
+}
+.app-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--s-5);
+}
+.app-card h2 {
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-2);
+}
+.app-card h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+.app-card h2 a:hover { color: var(--accent); }
+.app-card-desc { margin: 0 0 var(--s-4); }
+.app-card .chips { margin-bottom: var(--s-5); }
+.app-card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-5);
+  margin-top: auto;
+}
+.app-card-actions .links {
+  display: flex;
+  gap: var(--s-4);
+  font-size: 0.95rem;
+}

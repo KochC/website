@@ -14,111 +14,107 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/apps/apps.css">
-<style>
-  :root { --accent: #2563eb; --accent-soft: rgba(37,99,235,.1); }
-  .wrap { max-width: 760px; }
-  .app-row { display: flex; align-items: flex-start; gap: 16px; }
-  .app-row img { width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--border); flex-shrink: 0; }
-  .app-row h3 { margin: 0 0 4px; font-size: 1.05rem; }
-  .app-row h3 a { color: var(--text); text-decoration: none; }
-  .app-row h3 a:hover { color: var(--accent); }
-  .app-row p { margin: 0 0 10px; font-size: 0.92rem; }
-  .app-row .meta-row { margin: 0 0 14px; font-size: 0.78rem; }
-  .app-row .footer-links { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; }
-</style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap wide">
   <p class="back"><a href="/">&larr; koch.codes</a></p>
-  <h1>Apps</h1>
-  <p class="tagline">Small, focused iPhone apps. Every app here is built
-  local-first: no accounts, no ads, no third-party analytics, and nothing
-  leaves your device unless the app is explicitly a sharing tool (e.g.
-  copying text you choose to send). Released apps link straight to their App
-  Store listing.</p>
 
-  <div class="grid">
-    <div class="card app-row">
-      <img src="/apps/freeslots/icon.png" alt="">
-      <div>
-        <h3><a href="/apps/freeslots/">FreeSlots</a></h3>
-        <p>Turns your calendars into shareable free time — without exposing event details.</p>
-        <p class="meta-row">
-          <span>iOS 18+</span>
-          <span>Productivity</span>
-        </p>
-        <div class="footer-links">
-          <a class="store-badge small" href="https://apps.apple.com/us/app/freeslots-share-availability/id6808129276">
+  <main>
+  <header class="page-intro">
+    <h1>Apps</h1>
+    <p class="tagline">Small, focused iPhone apps. Every app here is built
+    local-first: no accounts, no ads, no third-party analytics, and nothing
+    leaves your device unless the app is explicitly a sharing tool (e.g.
+    copying text you choose to send). Released apps link straight to their App
+    Store listing.</p>
+  </header>
+
+  <div class="app-grid">
+    <article class="app-card" style="--accent:#2563eb; --accent-soft:rgba(37,99,235,.1);">
+      <a class="app-card-media" href="/apps/freeslots/" tabindex="-1" aria-hidden="true">
+        <img src="/apps/freeslots/media/hero.jpg" width="1600" height="686" alt="">
+      </a>
+      <div class="app-card-body">
+        <h2><a href="/apps/freeslots/">FreeSlots</a></h2>
+        <p class="app-card-desc">Turns your calendars into shareable free time — without exposing event details.</p>
+        <ul class="chips" aria-label="Details"><li>iOS 18+</li><li>Productivity</li></ul>
+        <div class="app-card-actions">
+          <a class="store-badge small" href="https://apps.apple.com/us/app/freeslots-share-availability/id6808129276" aria-label="Download FreeSlots on the App Store">
             <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <span><small>Download on the</small><strong>App Store</strong></span>
           </a>
-          <a href="/apps/freeslots/privacy.html">Privacy</a>
-          <a href="/apps/freeslots/support.html">Support</a>
+          <span class="links">
+            <a class="link" href="/apps/freeslots/privacy.html" aria-label="FreeSlots privacy policy">Privacy</a>
+            <a class="link" href="/apps/freeslots/support.html" aria-label="FreeSlots support">Support</a>
+          </span>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="card app-row" style="--accent:#ff9e3d; --accent-soft: rgba(255,158,61,.12);">
-      <img src="/apps/sundown/icon.png" alt="">
-      <div>
-        <h3><a href="/apps/sundown/">Sundown</a></h3>
-        <p>Your iPhone becomes a bedside sunset — warm light, then deep red, then dark.</p>
-        <p class="meta-row">
-          <span>iOS 18+</span>
-          <span>Lifestyle</span>
-        </p>
-        <div class="footer-links">
-          <a class="store-badge small" href="https://apps.apple.com/us/app/sundown-sleep-light/id6807182599">
+    <article class="app-card" style="--accent:#ff9e3d; --accent-soft:rgba(255,158,61,.12);">
+      <a class="app-card-media" href="/apps/sundown/" tabindex="-1" aria-hidden="true">
+        <img src="/apps/sundown/media/hero.jpg" width="1600" height="686" alt="">
+      </a>
+      <div class="app-card-body">
+        <h2><a href="/apps/sundown/">Sundown</a></h2>
+        <p class="app-card-desc">Your iPhone becomes a bedside sunset — warm light, then deep red, then dark.</p>
+        <ul class="chips" aria-label="Details"><li>iOS 18+</li><li>Lifestyle</li></ul>
+        <div class="app-card-actions">
+          <a class="store-badge small" href="https://apps.apple.com/us/app/sundown-sleep-light/id6807182599" aria-label="Download Sundown on the App Store">
             <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <span><small>Download on the</small><strong>App Store</strong></span>
           </a>
-          <a href="/apps/sundown/privacy.html">Privacy</a>
-          <a href="/apps/sundown/support.html">Support</a>
+          <span class="links">
+            <a class="link" href="/apps/sundown/privacy.html" aria-label="Sundown privacy policy">Privacy</a>
+            <a class="link" href="/apps/sundown/support.html" aria-label="Sundown support">Support</a>
+          </span>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="card app-row" style="--accent:#2a5cf0; --accent-soft: rgba(42,92,240,.1);">
-      <img src="/apps/droproute/icon.png" alt="">
-      <div>
-        <h3><a href="/apps/droproute/">DropRoute</a></h3>
-        <p>Save any file from the share sheet into your favorite Files folders with one tap.</p>
-        <p class="meta-row">
-          <span>iOS 18+</span>
-          <span>Productivity</span>
-        </p>
-        <div class="footer-links">
-          <a class="store-badge small" href="https://apps.apple.com/us/app/droproute-save-to-folder/id6819878022">
+    <article class="app-card" style="--accent:#2a5cf0; --accent-soft:rgba(42,92,240,.1);">
+      <a class="app-card-media" href="/apps/droproute/" tabindex="-1" aria-hidden="true">
+        <img src="/apps/droproute/media/hero.jpg" width="1600" height="686" alt="" loading="lazy">
+      </a>
+      <div class="app-card-body">
+        <h2><a href="/apps/droproute/">DropRoute</a></h2>
+        <p class="app-card-desc">Save any file from the share sheet into your favorite Files folders with one tap.</p>
+        <ul class="chips" aria-label="Details"><li>iOS 18+</li><li>Productivity</li></ul>
+        <div class="app-card-actions">
+          <a class="store-badge small" href="https://apps.apple.com/us/app/droproute-save-to-folder/id6819878022" aria-label="Download DropRoute on the App Store">
             <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <span><small>Download on the</small><strong>App Store</strong></span>
           </a>
-          <a href="/apps/droproute/privacy.html">Privacy</a>
-          <a href="/apps/droproute/support.html">Support</a>
+          <span class="links">
+            <a class="link" href="/apps/droproute/privacy.html" aria-label="DropRoute privacy policy">Privacy</a>
+            <a class="link" href="/apps/droproute/support.html" aria-label="DropRoute support">Support</a>
+          </span>
         </div>
       </div>
-    </div>
+    </article>
 
-    <div class="card app-row" style="--accent:#e8792f; --accent-soft: rgba(232,121,47,.12);">
-      <img src="/apps/cronlet/icon.png" alt="">
-      <div>
-        <h3><a href="/apps/cronlet/">Cronlet</a></h3>
-        <p>Run your Shortcuts on a schedule — in 45 minutes, every hour, or weekdays at 17:00.</p>
-        <p class="meta-row">
-          <span>iOS 18+</span>
-          <span>Productivity</span>
-        </p>
-        <div class="footer-links">
-          <a class="store-badge small" href="https://apps.apple.com/us/app/cronlet-shortcut-scheduler/id6819878633">
+    <article class="app-card" style="--accent:#e8792f; --accent-soft:rgba(232,121,47,.12);">
+      <a class="app-card-media" href="/apps/cronlet/" tabindex="-1" aria-hidden="true">
+        <img src="/apps/cronlet/media/hero.jpg" width="1600" height="686" alt="" loading="lazy">
+      </a>
+      <div class="app-card-body">
+        <h2><a href="/apps/cronlet/">Cronlet</a></h2>
+        <p class="app-card-desc">Run your Shortcuts on a schedule — in 45 minutes, every hour, or weekdays at 17:00.</p>
+        <ul class="chips" aria-label="Details"><li>iOS 18+</li><li>Productivity</li></ul>
+        <div class="app-card-actions">
+          <a class="store-badge small" href="https://apps.apple.com/us/app/cronlet-shortcut-scheduler/id6819878633" aria-label="Download Cronlet on the App Store">
             <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <span><small>Download on the</small><strong>App Store</strong></span>
           </a>
-          <a href="/apps/cronlet/privacy.html">Privacy</a>
-          <a href="/apps/cronlet/support.html">Support</a>
+          <span class="links">
+            <a class="link" href="/apps/cronlet/privacy.html" aria-label="Cronlet privacy policy">Privacy</a>
+            <a class="link" href="/apps/cronlet/support.html" aria-label="Cronlet support">Support</a>
+          </span>
         </div>
       </div>
-    </div>
-
+    </article>
   </div>
+  </main>
 
   <footer>
     &copy; Christopher Koch &middot; Questions about any app: <a href="mailto:feedback@koch.codes">feedback@koch.codes</a>
