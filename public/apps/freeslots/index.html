@@ -15,72 +15,77 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/apps/apps.css">
-<style>:root { --accent: #2563eb; --accent-soft: rgba(37,99,235,.1); }  .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 8px 4px 18px; margin: 0 -4px; }
-  .shots figure { margin: 0; flex: 0 0 200px; scroll-snap-align: start; text-align: center; }
-  .shots img { width: 200px; height: auto; border-radius: 22px; border: 1px solid var(--border);
-    box-shadow: 0 6px 18px rgba(15,23,42,.12); display: block; }
-  .shots figcaption { font-size: .85rem; color: var(--text-secondary); margin-top: 8px; }
+<style>
+  :root { --accent: #2563eb; --accent-soft: rgba(37,99,235,.1); }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap wide">
   <p class="back"><a href="/apps/">&larr; Apps</a></p>
-  <img class="hero" src="media/hero.jpg" width="1600" height="686" alt="FreeSlots: Reply with times, not links.">
-  <div class="app-header">
-    <img class="app-icon" src="icon.png" alt="FreeSlots icon">
-    <div>
-      <h1>FreeSlots</h1>
-      <p class="tagline" style="margin-bottom:0">See when you're free. Share it in seconds.</p>
+
+  <main>
+  <section class="app-hero" aria-labelledby="app-name">
+    <div class="app-hero-text">
+      <img class="app-icon" src="icon.png" width="96" height="96" alt="FreeSlots app icon">
+      <h1 id="app-name">FreeSlots</h1>
+      <p class="tagline">See when you're free. Share it in seconds.</p>
+      <p class="intro">Turns your calendars into clean, shareable availability — without exposing event details.</p>
+      <div class="store-row">
+      <a class="store-badge" href="https://apps.apple.com/us/app/freeslots-share-availability/id6808129276">
+        <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+      </div>
+      <ul class="chips" aria-label="Details"><li>iPhone</li><li>iOS 18 or later</li><li>Productivity</li><li>One-time Pro, no subscription</li></ul>
     </div>
-  </div>
+    <div class="device">
+      <img src="media/screen-1-reply.jpg" width="414" height="900" alt="FreeSlots reply screen: paste what they asked" fetchpriority="high">
+    </div>
+  </section>
 
-  <p class="meta-row">
-    <span>iPhone</span>
-    <span>Requires iOS 18 or later</span>
-    <span>Productivity</span>
-  </p>
+  <section class="section about">
+    <div class="prose">
+      <h2 class="section-title">What is FreeSlots?</h2>
+      <p>FreeSlots reads your existing calendars and turns them into clean, shareable
+      free time. Pick a range, see your open slots, tap Copy, paste into Messages,
+      WhatsApp, or Mail.</p>
+      <p>FreeSlots doesn't schedule meetings, send invitations, or
+      expose your event names to anyone — it only ever works with start times, end
+      times, and whether you're busy.</p>
+    </div>
+    <div>
+      <h2 class="section-title">Highlights</h2>
+      <ul class="features">
+          <li>Reads your calendars read-only — never creates or edits events</li>
+          <li>Copy or share your availability as clean plain text, ready to paste</li>
+          <li>Custom working hours, buffers, minimum slot length, and time rounding</li>
+          <li>Clean, Compact, or Conversational output styles</li>
+          <li>No account, no backend, no ads, no analytics — works fully offline</li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="store-row">
-    <a class="store-badge" href="https://apps.apple.com/us/app/freeslots-share-availability/id6808129276">
-      <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span><small>Download on the</small><strong>App Store</strong></span>
+  <section class="section" aria-labelledby="shots-title">
+    <h2 class="section-title" id="shots-title">Screenshots</h2>
+    <div class="shots few">
+      <figure><img src="media/screen-1-reply.jpg" width="414" height="900" alt="Reply screen: paste what they asked" loading="lazy"><figcaption>Paste the question</figcaption></figure>
+      <figure><img src="media/screen-2-best-times.jpg" width="414" height="900" alt="Best 3 times with a ready-to-send reply" loading="lazy"><figcaption>Get your best 3 times</figcaption></figure>
+      <figure><img src="media/screen-3-availability.jpg" width="414" height="900" alt="Free slots for the next 7 days" loading="lazy"><figcaption>Share your free slots</figcaption></figure>
+      <figure><img src="media/screen-4-paywall.jpg" width="414" height="900" alt="FreeSlots Pro: one-time purchase" loading="lazy"><figcaption>One-time Pro, no subscription</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section link-cards" aria-label="Help and privacy">
+    <a class="card" href="support.html">
+      <h3>Support <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+      <p>Questions or feedback? Here's how to reach us.</p>
     </a>
-  </div>
-
-  <h2>Screenshots</h2>
-  <div class="shots">
-    <figure><img src="media/screen-1-reply.jpg" alt="Reply screen: paste what they asked" loading="lazy"><figcaption>Paste the question</figcaption></figure>
-    <figure><img src="media/screen-2-best-times.jpg" alt="Best 3 times with a ready-to-send reply" loading="lazy"><figcaption>Get your best 3 times</figcaption></figure>
-    <figure><img src="media/screen-3-availability.jpg" alt="Free slots for the next 7 days" loading="lazy"><figcaption>Share your free slots</figcaption></figure>
-    <figure><img src="media/screen-4-paywall.jpg" alt="FreeSlots Pro: one-time purchase" loading="lazy"><figcaption>One-time Pro, no subscription</figcaption></figure>
-  </div>
-
-  <a class="card" href="support.html">
-    <h3>Support &rarr;</h3>
-    <p>Questions or feedback? Here's how to reach us.</p>
-  </a>
-
-  <a class="card" href="privacy.html">
-    <h3>Privacy Policy &rarr;</h3>
-    <p>FreeSlots never shares your event titles or details — with anyone, including us.</p>
-  </a>
-
-  <h2>What is FreeSlots?</h2>
-  <p>FreeSlots reads your existing calendars and turns them into clean, shareable
-  free time. Pick a range, see your open slots, tap Copy, paste into Messages,
-  WhatsApp, or Mail. FreeSlots doesn't schedule meetings, send invitations, or
-  expose your event names to anyone — it only ever works with start times, end
-  times, and whether you're busy.</p>
-
-  <h2>Highlights</h2>
-  <ul class="feature-list">
-    <li>Reads your calendars read-only — never creates or edits events</li>
-    <li>Copy or share your availability as clean plain text, ready to paste</li>
-    <li>Custom working hours, buffers, minimum slot length, and time rounding</li>
-    <li>Clean, Compact, or Conversational output styles</li>
-    <li>No account, no backend, no ads, no analytics — works fully offline</li>
-  </ul>
+    <a class="card" href="privacy.html">
+      <h3>Privacy Policy <span class="arrow" aria-hidden="true">&rarr;</span></h3>
+      <p>FreeSlots never shares your event titles or details — with anyone, including us.</p>
+    </a>
+  </section>
+  </main>
 
   <footer>&copy; Christopher Koch &middot; FreeSlots is a local, offline app with no account, no backend, and no tracking.</footer>
 </div>
