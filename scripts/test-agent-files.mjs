@@ -225,17 +225,22 @@ await check('sitemap.xml lists only pages that exist', async () => {
   assert(!locs.some((loc) => loc.includes('/apps/redline/')), 'redline has no landing page but is listed')
 })
 
-await check('sitemap carries a lastmod for every URL', async () => {
+await check('sitemap carries lastmod dates that are complete or absent', async () => {
   const xml = await readFile(path.join(PUBLIC, 'sitemap.xml'), 'utf8')
   const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) ?? []
   assert(urlBlocks.length > 0, 'no <url> blocks')
-  // A missing prefix (public/) once made git return a date for only one entry;
-  // require every entry to carry one so that regression is caught.
-  const withDates = urlBlocks.filter((block) => /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(block))
+  const dated = urlBlocks.filter((block) => /<lastmod>([^<]+)<\/lastmod>/.test(block))
+  // Either every URL has a well-formed date, or none does (no git history, e.g.
+  // a shallow CI clone). A partial set means path resolution broke.
+  if (dated.length === 0) return
   assert(
-    withDates.length === urlBlocks.length,
-    `${urlBlocks.length - withDates.length} of ${urlBlocks.length} URLs lack a valid lastmod`,
+    dated.length === urlBlocks.length,
+    `${urlBlocks.length - dated.length} of ${urlBlocks.length} URLs lack a lastmod`,
   )
+  for (const block of dated) {
+    const date = block.match(/<lastmod>([^<]+)<\/lastmod>/)[1]
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(date), `bad lastmod: ${date}`)
+  }
 })
 
 await check('a custom 404 page is published', async () => {

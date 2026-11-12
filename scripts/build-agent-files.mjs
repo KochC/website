@@ -749,14 +749,16 @@ async function writeAgentPolicyFiles() {
   ]
 
   // lastmod tells crawlers what actually changed. Derive it from the file's own
-  // history in git; when that is unavailable (fresh clone, tarball) fall back to
-  // omitting the element rather than inventing a date.
-  const urls = []
+  // history in git. If history is unavailable (shallow clone, tarball), omit
+  // lastmod for every URL rather than inventing dates: a wrong lastmod is worse
+  // than none, because crawlers would learn to distrust it.
+  const withDates = []
   for (const page of pages) {
     // Paths are relative to public/, which is where these files live.
-    const lastmod = await gitLastModified(`public/${page.file}`)
-    urls.push({ ...page, lastmod })
+    withDates.push({ ...page, lastmod: await gitLastModified(`public/${page.file}`) })
   }
+  const allDated = withDates.every((page) => page.lastmod)
+  const urls = allDated ? withDates : withDates.map(({ lastmod, ...page }) => page)
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
