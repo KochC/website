@@ -61,7 +61,7 @@ read and use it cheaply and reliably:
 | Discovery | `robots.txt` (AI rules + Content-Signal), `sitemap.xml`, `Link` response headers |
 | Content | Markdown twin of every page, `llms.txt`, `llms-full.md` |
 | Protocols | `/.well-known/api-catalog`, `/.well-known/mcp/server-card.json` + `/mcp`, `/.well-known/agent-card.json` + `/a2a` |
-| Auth | `/auth.md`, `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource` |
+| Auth | `/auth.md` (states that everything is public; no OAuth server exists, so no OAuth metadata is published) |
 | Skills | `/.well-known/agent-skills/index.json` |
 
 Everything static is **generated from the pages people actually read**, so it

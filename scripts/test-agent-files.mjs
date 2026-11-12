@@ -129,16 +129,17 @@ await check('auth.md exists and starts with an auth.md heading', async () => {
   assert(/^# auth\.md/m.test(body), 'H1 must contain "auth.md"')
 })
 
-await check('OAuth discovery and protected resource metadata are consistent', async () => {
-  const server = await readJson('.well-known/oauth-authorization-server')
-  const resource = await readJson('.well-known/oauth-protected-resource')
-  assert(server.issuer, 'issuer missing')
-  assert(server.authorization_endpoint && server.token_endpoint, 'endpoints missing')
-  assert(Array.isArray(server.grant_types_supported), 'grant_types_supported missing')
-  assert(resource.resource, 'resource missing')
+await check('does not publish OAuth metadata for a server that does not exist', async () => {
+  // This was a real bug: the site advertised oauth-authorization-server and
+  // oauth-protected-resource describing /oauth endpoints that 404. Metadata
+  // pointing at dead endpoints is worse than none, so its absence is asserted.
+  for (const doc of ['.well-known/oauth-authorization-server', '.well-known/oauth-protected-resource']) {
+    assert(!(await exists(doc)), `${doc} must not be published without a real authorization server`)
+  }
+  const authMd = await readFile(path.join(PUBLIC, 'auth.md'), 'utf8')
   assert(
-    Array.isArray(resource.authorization_servers) && resource.authorization_servers.includes(server.issuer),
-    'protected resource must reference the advertised issuer',
+    !/authorization_code/.test(authMd),
+    'auth.md must not describe an OAuth flow the site does not implement',
   )
 })
 

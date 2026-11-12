@@ -26,11 +26,11 @@ This site is a public, read-only personal website and portfolio for Christopher 
 
 ## When credentials *are* relevant
 
-There is one optional OAuth 2.0 authorization server used for the owner’s own
-tooling, not for site content. It is advertised at
-`https://koch.codes/.well-known/oauth-authorization-server` and it supports
-`authorization_code` with PKCE for a single first-party client. Agents have no
-route to register a client; contact chris@koch.codes if you believe you need access.
+They are not, for anything published here. There is no OAuth authorization
+server on this domain, no client registration, and no scopes to request — so no
+`/.well-known/oauth-authorization-server` or
+`/.well-known/oauth-protected-resource` document is published. If you need
+something beyond the public content, contact chris@koch.codes.
 
 ## Contact
 

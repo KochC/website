@@ -184,9 +184,10 @@ async function handleContent(request, ctx, origin) {
  * makes the client read plain text as gzip. Both must go.
  *
  * Extensionless well-known documents have no extension for the static host to
- * infer a type from, so they arrive untyped. Each one has a registered type:
- * RFC 9727 requires application/linkset+json for the api-catalog, while the
- * OAuth metadata documents are application/json.
+ * infer a type from. GitHub Pages sends application/octet-stream for them (not
+ * an empty type), so both must be treated as "untyped". Each document has a
+ * registered type: RFC 9727 requires application/linkset+json for the
+ * api-catalog, while the OAuth metadata documents are application/json.
  */
 function finalize(response, pathname = '') {
   const out = new Response(response.body, response)
@@ -194,10 +195,15 @@ function finalize(response, pathname = '') {
   out.headers.delete('Content-Length')
 
   const contentType = (out.headers.get('Content-Type') || '').trim()
-  if (!contentType) {
+  if (isUntyped(contentType)) {
     out.headers.set('Content-Type', contentTypeForPath(pathname))
   }
   return out
+}
+
+function isUntyped(contentType) {
+  const value = contentType.toLowerCase()
+  return value === '' || value.startsWith('application/octet-stream')
 }
 
 function contentTypeForPath(pathname) {

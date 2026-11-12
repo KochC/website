@@ -13,7 +13,7 @@
  * so an edit to an app page or to llms.txt flows through automatically.
  */
 import { createHash } from 'node:crypto'
-import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises'
+import { readFile, writeFile, readdir, mkdir, unlink } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -529,11 +529,11 @@ This site is a public, read-only personal website and portfolio for ${NAME}.
 
 ## When credentials *are* relevant
 
-There is one optional OAuth 2.0 authorization server used for the owner’s own
-tooling, not for site content. It is advertised at
-\`${SITE}/.well-known/oauth-authorization-server\` and it supports
-\`authorization_code\` with PKCE for a single first-party client. Agents have no
-route to register a client; contact ${EMAIL} if you believe you need access.
+They are not, for anything published here. There is no OAuth authorization
+server on this domain, no client registration, and no scopes to request — so no
+\`/.well-known/oauth-authorization-server\` or
+\`/.well-known/oauth-protected-resource\` document is published. If you need
+something beyond the public content, contact ${EMAIL}.
 
 ## Contact
 
@@ -542,43 +542,22 @@ Questions about access, licensing or reuse: ${EMAIL}.
 emit('auth.md', authMd)
 
 // ---------------------------------------------------------------------------
-// OAuth discovery + Protected Resource Metadata
+// OAuth discovery
 // ---------------------------------------------------------------------------
-
-const AUTH_SERVER = `${SITE}/oauth`
-const oauthServer = {
-  issuer: AUTH_SERVER,
-  authorization_endpoint: `${AUTH_SERVER}/authorize`,
-  token_endpoint: `${AUTH_SERVER}/token`,
-  revocation_endpoint: `${AUTH_SERVER}/revoke`,
-  jwks_uri: `${AUTH_SERVER}/jwks.json`,
-  response_types_supported: ['code'],
-  response_modes_supported: ['query'],
-  grant_types_supported: ['authorization_code', 'refresh_token'],
-  code_challenge_methods_supported: ['S256'],
-  token_endpoint_auth_methods_supported: ['none', 'client_secret_basic'],
-  scopes_supported: ['profile:read'],
-  service_documentation: `${SITE}/llms.txt`,
-  authorization_response_iss_parameter_supported: true,
-  agent_auth: {
-    register_uri: null,
-    registration_methods: [],
-    note: 'No dynamic client registration. Single first-party client.',
-    contact: EMAIL,
-  },
-}
-emit('.well-known/oauth-authorization-server', JSON.stringify(oauthServer, null, 2))
-
-const protectedResource = {
-  resource: `${SITE}/mcp`,
-  authorization_servers: [AUTH_SERVER],
-  scopes_supported: ['profile:read'],
-  bearer_methods_supported: ['header'],
-  resource_documentation: `${SITE}/llms.txt`,
-  resource_name: 'koch.codes read-only MCP endpoint',
-  tls_client_certificate_bound_access_tokens: false,
-}
-emit('.well-known/oauth-protected-resource', JSON.stringify(protectedResource, null, 2))
+//
+// Deliberately NOT published: /.well-known/oauth-authorization-server and
+// /.well-known/oauth-protected-resource.
+//
+// An earlier revision advertised both, describing an authorization server at
+// /oauth with authorize/token/jwks endpoints. No such server exists — those
+// URLs 404. Publishing them made the site look more "agent-ready" on a
+// checklist while telling agents something false, and OAuth metadata that
+// points at dead endpoints is worse than no metadata: a client that trusts it
+// will try to obtain a token from an endpoint that cannot issue one.
+//
+// /mcp is unauthenticated and read-only, so there is no protected resource to
+// describe. If credentials are ever added, generate both documents from the
+// real server configuration at that point — not before.
 
 // ---------------------------------------------------------------------------
 // llms-full.md
@@ -745,15 +724,60 @@ for (const redirect of REDIRECTS) {
 // Write or verify
 // ---------------------------------------------------------------------------
 
+/**
+ * Outputs this generator owns. Removing an entry from the config above must
+ * also remove the file from public/, otherwise a deleted document silently
+ * keeps being published (this happened with the OAuth metadata). Only these
+ * locations are ever pruned — hand-written pages are never touched.
+ */
+const GENERATED_DIRS = ['.well-known', 'schemas']
+const GENERATED_ROOT_FILES = [
+  'auth.md',
+  'index.md',
+  'apps/index.md',
+  'llms-full.md',
+  'llms-full.txt',
+]
+
+async function generatedFilesOnDisk() {
+  const found = []
+  async function walk(dir, prefix) {
+    let entries
+    try {
+      entries = await readdir(dir, { withFileTypes: true })
+    } catch {
+      return
+    }
+    for (const entry of entries) {
+      const rel = `${prefix}${entry.name}`
+      if (entry.isDirectory()) await walk(path.join(dir, entry.name), `${rel}/`)
+      else found.push(rel)
+    }
+  }
+  for (const dir of GENERATED_DIRS) await walk(path.join(PUBLIC, dir), `${dir}/`)
+  for (const file of GENERATED_ROOT_FILES) {
+    if (existsSync(path.join(PUBLIC, file))) found.push(file)
+  }
+  return found
+}
+
 async function writeTree(entries, base) {
   let written = 0
+  let removed = 0
   for (const [relPath, contents] of entries) {
     const target = path.join(base, relPath)
     await mkdir(path.dirname(target), { recursive: true })
     await writeFile(target, contents, 'utf8')
     written += 1
   }
-  return written
+
+  // Prune anything previously generated that is no longer produced.
+  for (const relPath of await generatedFilesOnDisk()) {
+    if (entries.has(relPath)) continue
+    await unlink(path.join(base, relPath))
+    removed += 1
+  }
+  return { written, removed }
 }
 
 if (CHECK) {
@@ -773,8 +797,9 @@ if (CHECK) {
   }
   console.log(`Agent files in sync (${files.size + publicFiles.size} files).`)
 } else {
-  const written = await writeTree(new Map([...files, ...publicFiles]), PUBLIC)
+  const { written, removed } = await writeTree(new Map([...files, ...publicFiles]), PUBLIC)
   console.log(`Wrote ${written} agent files into public/.`)
+  if (removed) console.log(`Removed ${removed} stale generated file(s).`)
   console.log(`  • ${twins.length} Markdown twins`)
   console.log(`  • ${SKILLS.length} skills`)
   console.log(`  • ${MCP_TOOLS.length} MCP tools`)

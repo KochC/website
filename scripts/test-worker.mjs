@@ -58,12 +58,11 @@ async function serveOrigin(request) {
     if (info.isDirectory()) throw new Error('directory')
     const body = await readFile(file)
     const extension = path.extname(file)
-    const type =
-      CONTENT_TYPES[extension] ??
-      (path.basename(file).includes('.well-known') ? 'application/json' : 'application/octet-stream')
-    // Vite preview (like GitHub Pages) gives extensionless files no type at
-    // all, which is what the Worker's fallback exists to fix.
-    const contentType = extension ? type : ''
+    // GitHub Pages infers types from the extension only; an extensionless file
+    // (e.g. /.well-known/api-catalog) comes back as application/octet-stream.
+    // Model Pages exactly, since that is what production runs on: an
+    // empty-or-friendly default here would hide the real behaviour.
+    const contentType = CONTENT_TYPES[extension] ?? 'application/octet-stream'
     // Real origins compress HTML; the runtime decodes it before the Worker sees
     // it, so advertise gzip the way GitHub Pages does and let the guard be
     // tested for the (wrong) copied Content-Encoding header.
@@ -219,15 +218,11 @@ console.log('\nLink headers')
 }
 
 {
-  // These are application/json, not linkset — the untyped-file fallback must
-  // not relabel every extensionless well-known document.
+  // OAuth metadata must stay unpublished: there is no authorization server, so
+  // advertising endpoints would send agents to 404s.
   for (const doc of ['/.well-known/oauth-protected-resource', '/.well-known/oauth-authorization-server']) {
     const response = await call(doc)
-    await expect(
-      `${doc} is served as application/json`,
-      (response.headers.get('Content-Type') ?? '').startsWith('application/json'),
-      response.headers.get('Content-Type'),
-    )
+    await expect(`${doc} is not published`, response.status === 404, `got ${response.status}`)
   }
 }
 
