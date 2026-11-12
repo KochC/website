@@ -9,6 +9,7 @@
 <meta property="og:url" content="https://koch.codes/apps/isolo/">
 <meta property="og:title" content="Isolo Cutout — Tap any object, keep a transparent PNG">
 <meta property="og:description" content="Lift any object out of a photo on your iPhone and keep it as a transparent PNG. No account, no uploads, no ads.">
+<meta property="og:image" content="https://koch.codes/apps/isolo/shot-select.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/apps/apps.css">
 <style>
@@ -16,6 +17,9 @@
   @media (prefers-color-scheme: dark) {
     html:root { --accent: #5CF2C9; --accent-soft: rgba(92,242,201,.14); --bg: #0a0f0d; --bg-elevated: #131b18; --border: rgba(92,242,201,.18); }
   }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-5); margin-top: var(--s-6); }
+  .shots img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  @media (max-width: 560px) { .shots { grid-template-columns: 1fr 1fr; gap: var(--s-3); } }
 </style>
 </head>
 <body>
@@ -28,8 +32,16 @@
       <h1 id="app-name">Isolo Cutout</h1>
       <p class="tagline">Tap any object. Keep a transparent PNG.</p>
       <p class="intro">Lift a person, a product, a chair or a plant out of any photo — not just the main subject. Everything happens on your iPhone: no account, no uploads, no ads.</p>
+      <div class="store-row">
+        <a class="store-badge" href="https://apps.apple.com/app/id6833708879">
+          <svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Download on the</small><strong>App Store</strong></span>
+        </a>
+      </div>
       <ul class="chips" aria-label="Details"><li>iPhone</li><li>iOS 18 or later</li><li>Photo &amp; Video</li></ul>
-      <p class="note">Coming to the App Store.</p>
+    </div>
+    <div class="device">
+      <img src="shot-select.png" width="414" height="900" alt="Isolo Cutout editor with a mug selected in a desk photo" fetchpriority="high">
     </div>
   </section>
 
@@ -39,7 +51,7 @@
       <p>Isolo runs Apple's on-device selection model, so a single tap picks the
       object under your finger. Add more taps, drag a box or draw with the lasso to
       tidy up awkward edges. On iOS 27 and later this works for any object in the
-      frame.</p>
+      frame; on earlier versions it lifts the photo's main subject.</p>
 
       <h2>Keep the transparency</h2>
       <p>The export is a real transparent PNG, not a white background pretend-out.
@@ -62,6 +74,11 @@
       <p><strong>Isolo Pro</strong> (one-time purchase, no subscription): original
       resolution, several objects combined into one PNG, box and lasso refinements,
       product-photo backgrounds and saved selections.</p>
+    </div>
+    <div class="shots">
+      <div class="device">
+        <img src="shot-start-raw.png" width="414" height="900" alt="Isolo Cutout start screen: choose a photo, take one, or open Files" loading="lazy">
+      </div>
     </div>
   </section>
 
