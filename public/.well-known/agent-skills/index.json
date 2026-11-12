@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "read-profile",
+      "type": "skill-md",
+      "description": "Get Christopher Koch’s professional profile, experience, publications, awards and certifications in a compact machine-readable form.",
+      "url": "/.well-known/agent-skills/read-profile/SKILL.md",
+      "digest": "sha256:ab6c0f27f98e6af672e84c2b7c506995d116bea3f205259354703347333f9930"
+    },
+    {
+      "name": "find-app",
+      "type": "skill-md",
+      "description": "Find one of Christopher Koch’s iOS apps (FreeSlots, Sundown, DropRoute, Cronlet, Redline), its App Store link, platform requirements and privacy position.",
+      "url": "/.well-known/agent-skills/find-app/SKILL.md",
+      "digest": "sha256:9f7fffa7b1baa8b7f56e84be0d0346308cdc7481c835b73167875ce44d828902"
+    },
+    {
+      "name": "report-app-issue",
+      "type": "skill-md",
+      "description": "Route a bug report, feature request or App Store review question about one of the iOS apps to the correct support address with the details the maintainer needs.",
+      "url": "/.well-known/agent-skills/report-app-issue/SKILL.md",
+      "digest": "sha256:9ea3baafb50d34c2506f3114b0e6c74935ae92013a3b2e13885f547899379403"
+    },
+    {
+      "name": "cite-publication",
+      "type": "skill-md",
+      "description": "Get a correct, complete citation for one of Christopher Koch’s Agentic AI papers, including authors, date, arXiv id and abstract link.",
+      "url": "/.well-known/agent-skills/cite-publication/SKILL.md",
+      "digest": "sha256:e942360a8197e8ef1b3df17b4d0514d591aec3cb652f90006972cb49d523ae0a"
+    }
+  ]
+}

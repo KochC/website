@@ -1,0 +1,108 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "koch-codes",
+    "title": "koch.codes — Christopher Koch",
+    "version": "1.0.0"
+  },
+  "name": "koch-codes",
+  "description": "Read-only access to Christopher Koch’s public profile: experience, publications, apps and contact details. No authentication, no writes, no personal data beyond what is published on the site.",
+  "url": "https://koch.codes/mcp",
+  "homepage": "https://koch.codes/",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "/mcp"
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "get_profile",
+      "title": "Get profile",
+      "description": "Professional profile of Christopher Koch: current role, summary, focus, skills, languages and contact links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_experience",
+      "title": "List experience",
+      "description": "Employment history grouped by organisation, newest first, with role titles, periods and descriptions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_publications",
+      "title": "List publications",
+      "description": "Peer-reviewed and preprint publications on Agentic AI, AI governance and AI-augmented engineering, with arXiv ids and links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Optional case-insensitive substring to filter by title or abstract topic."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "list_apps",
+      "title": "List apps",
+      "description": "Published iOS, iPadOS and macOS apps, with App Store links, platform requirements and privacy/support URLs.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_app",
+      "title": "Get app",
+      "description": "Details for a single app by slug (for example \"freeslots\").",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "App slug, e.g. \"freeslots\", \"sundown\", \"cronlet\"."
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_contact",
+      "title": "Get contact details",
+      "description": "Email addresses and profile links for contacting Christopher Koch.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  ],
+  "contact": {
+    "email": "chris@koch.codes",
+    "url": "https://koch.codes/"
+  }
+}

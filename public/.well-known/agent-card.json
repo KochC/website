@@ -1,0 +1,92 @@
+{
+  "name": "koch-codes-profile-agent",
+  "description": "Answers questions about Christopher Koch’s professional profile, research publications and published apps using the site’s public content. Read-only and stateless.",
+  "version": "1.0.0",
+  "supportedInterfaces": [
+    {
+      "url": "https://koch.codes/a2a",
+      "protocolBinding": "HTTP+JSON",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "provider": {
+    "organization": "Christopher Koch",
+    "url": "https://koch.codes/"
+  },
+  "documentationUrl": "https://koch.codes/llms.txt",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "profile-qa",
+      "name": "Profile questions",
+      "description": "Answer questions about experience, skills, awards and certifications from the published profile.",
+      "tags": [
+        "profile",
+        "resume",
+        "cv",
+        "career"
+      ],
+      "examples": [
+        "Where does Christopher Koch work?",
+        "Which cloud platforms has he worked with?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain"
+      ]
+    },
+    {
+      "id": "publications",
+      "name": "Publications",
+      "description": "List and summarise published research with arXiv ids, dates and authors.",
+      "tags": [
+        "research",
+        "agentic-ai",
+        "publications"
+      ],
+      "examples": [
+        "List his papers on AI governance."
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json"
+      ]
+    },
+    {
+      "id": "apps",
+      "name": "Apps",
+      "description": "Describe published iOS, iPadOS and macOS apps with App Store links and privacy position.",
+      "tags": [
+        "apps",
+        "ios",
+        "app-store"
+      ],
+      "examples": [
+        "Which iOS apps did he release?",
+        "Does FreeSlots collect any data?"
+      ],
+      "inputModes": [
+        "text/plain"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json"
+      ]
+    }
+  ]
+}

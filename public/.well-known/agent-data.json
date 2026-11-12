@@ -1,0 +1,526 @@
+{
+  "$schema": "https://koch.codes/schemas/agent-data.schema.json",
+  "generated_from": "https://koch.codes/llms.txt",
+  "site": {
+    "name": "koch.codes",
+    "url": "https://koch.codes/",
+    "description": "Christopher Koch — Lead Engineer @ M-Trust™ (Merck Group) and independent Agentic AI researcher. Embedded systems, cloud architecture (AWS, Azure, Palantir Foundry), cryptography, and multi-agent AI systems.",
+    "language": "en",
+    "languages": [
+      "de",
+      "en"
+    ]
+  },
+  "profile": {
+    "name": "Christopher Koch",
+    "title": "Lead Engineer @ M-Trust™ (Merck Group) · Independent Agentic AI Researcher",
+    "url": "https://koch.codes/",
+    "summary": "Technology leader with expertise in embedded systems, cloud architecture, AI engineering, and digital transformation. Works across the full technology stack — from low-level firmware and hardware prototyping to cloud platforms (AWS, Azure, Palantir Foundry) through to AI-powered systems and secure architecture.\n\nLeads and orchestrates a large team of AI agents across various technical domains, using them to accelerate development, research, automation, documentation, and problem-solving. Also works as an independent researcher in Agentic AI, exploring multi-agent systems, autonomous workflows, and AI-driven engineering.\n\nRegulated delivery: has built CE-certified hardware and software for validated GxP environments following GAMP 5, and worked within ISO 27001-compliant environments, including the requirements, verification, documentation, traceability, and audit-readiness processes these require.\n\nSkills: Embedded Systems, Firmware (C/C++), Hardware Design, AI / Agentic AI, AWS, Azure, Palantir Foundry, System Architecture, Cloud Platform Engineering, Cryptography & Security, SDK Integration, Prototyping, CE Conformity, Computer System Validation (CSV), GxP, GAMP 5, ISO 27001, Team Leadership, Negotiation, Delegation.\n\nLanguages: German (native), English (fluent, C1), French (elementary).",
+    "focus": "Focus: building reliable, scalable, and maintainable systems — from embedded devices to cloud infrastructure and autonomous intelligence — especially in regulated technology environments.",
+    "skills": [
+      "Embedded Systems",
+      "Firmware (C/C++)",
+      "Hardware Design",
+      "AI / Agentic AI",
+      "AWS",
+      "Azure",
+      "Palantir Foundry",
+      "System Architecture",
+      "Cloud Platform Engineering",
+      "Cryptography & Security",
+      "SDK Integration",
+      "Prototyping",
+      "CE Conformity",
+      "Computer System Validation (CSV)",
+      "GxP",
+      "GAMP 5",
+      "ISO 27001",
+      "Team Leadership",
+      "Negotiation",
+      "Delegation."
+    ],
+    "languages": [
+      {
+        "name": "German",
+        "level": "native"
+      },
+      {
+        "name": "English",
+        "level": "fluent, C1"
+      },
+      {
+        "name": "French",
+        "level": "elementary"
+      }
+    ],
+    "contact": {
+      "email": "chris@koch.codes",
+      "linkedin": "https://www.linkedin.com/in/koch-christopher/",
+      "github": "https://github.com/KochC",
+      "website": "https://koch.codes/"
+    }
+  },
+  "experience": [
+    {
+      "company": "Merck Group",
+      "location": "Darmstadt",
+      "roles": [
+        {
+          "title": "Lead Engineer · M-Trust™ · Science & Technology",
+          "period": "Dec 2023 – Present",
+          "description": "End-to-end embedded systems development, hardware/software prototyping, secure system architecture with cryptography and digital signatures. Accelerating prototype-to-product transitions in regulated industries — from CE-certified hardware to software for validated GxP environments (GAMP 5)."
+        },
+        {
+          "title": "Senior Data Engineer · Palantir Foundry Architect",
+          "period": "Jan 2022 – Dec 2023",
+          "description": "Technical lead for platform development, custom tools and integrations for data pipelines, analytics, and visualization."
+        },
+        {
+          "title": "Leader of the Makerspace · Innovation Center",
+          "period": "Nov 2020 – Jan 2022",
+          "description": "Led the Makerspace at the Merck Innovation Center; consulted on multi-million-dollar innovation projects; built prototypes for future technologies."
+        },
+        {
+          "title": "Innovation Manager · Innovation Center",
+          "period": "Mar 2019 – Nov 2020",
+          "description": "Led and supported innovation projects in computer science and engineering."
+        },
+        {
+          "title": "Consulting Expert Electronics & Digitalisation",
+          "period": "Sep 2018 – Feb 2019",
+          "description": "Consulted on future leading technologies at the Merck Innovation Center."
+        }
+      ]
+    },
+    {
+      "company": "Wingcopter",
+      "location": "Frankfurt",
+      "roles": [
+        {
+          "title": "Chief Systems Engineer",
+          "period": "Dec 2017 – Jul 2018",
+          "description": "Hardware and software development for unmanned aerial vehicles."
+        },
+        {
+          "title": "R&D Engineer",
+          "period": "Aug 2017 – Dec 2017",
+          "description": "Research and development in aerospace engineering."
+        }
+      ]
+    },
+    {
+      "company": "Bosch",
+      "location": "Reutlingen / Renningen",
+      "roles": [
+        {
+          "title": "Master Thesis · Automotive Electronics InnoLab",
+          "period": "Mar 2017 – Aug 2017",
+          "description": "Collision avoidance for autonomous flying robotic systems."
+        },
+        {
+          "title": "Bachelor Thesis · Advanced Development",
+          "period": "Oct 2014 – Mar 2015",
+          "description": "Generic light-animation description language and corresponding hardware for mobile robots."
+        },
+        {
+          "title": "Student Intern · Advanced Development",
+          "period": "Aug 2013 – Jan 2014",
+          "description": "Programming movement and behavior of mobile robots for human-machine interaction studies."
+        }
+      ]
+    },
+    {
+      "company": "koch.codes",
+      "location": "Stuttgart",
+      "roles": [
+        {
+          "title": "Founder",
+          "period": "Jul 2011 – Aug 2017",
+          "description": "Ran an independent web business during university."
+        }
+      ]
+    },
+    {
+      "company": "Albstadt-Sigmaringen University",
+      "location": "Albstadt",
+      "roles": [
+        {
+          "title": "R&D Assistant",
+          "period": "Oct 2016 – Feb 2017",
+          "description": "Algorithm development for learning technical processes with artificial neural networks and automatic generation of SystemC modules."
+        },
+        {
+          "title": "R&D Student",
+          "period": "Apr 2016 – Sep 2016",
+          "description": "Preparation of test objects for digital forensics examinations of the Federal Criminal Police Office (BKA)."
+        }
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "id": "arXiv:2606.16649",
+      "date": "Jun 2026",
+      "title": "The Integrator Advantage: Controlled Agentic AI for Small and Medium-Sized Companies",
+      "authors": "Christopher Koch, Joshua A. Wellbrock",
+      "url": "https://arxiv.org/abs/2606.16649",
+      "abstract": "https://arxiv.org/pdf/2606.16649"
+    },
+    {
+      "id": "arXiv:2605.20456",
+      "date": "May 2026",
+      "title": "Agentic Agile-V: From Vibe Coding to Verified Engineering in Software and Hardware Development",
+      "authors": "Christopher Koch",
+      "url": "https://arxiv.org/abs/2605.20456",
+      "abstract": "https://arxiv.org/pdf/2605.20456"
+    },
+    {
+      "id": "arXiv:2605.06713",
+      "date": "May 2026",
+      "title": "Agentic AI and the Industrialization of Cyber Offense: Forecast, Consequences, and Defensive Priorities for Enterprises and the Mittelstand",
+      "authors": "Christopher Koch",
+      "url": "https://arxiv.org/abs/2605.06713",
+      "abstract": "https://arxiv.org/pdf/2605.06713"
+    },
+    {
+      "id": "arXiv:2604.19818",
+      "date": "Apr 2026",
+      "title": "Beyond Task Success: An Evidence-Synthesis Framework for Evaluating, Governing, and Orchestrating Agentic AI",
+      "authors": "Christopher Koch, Joshua Andreas Wellbrock",
+      "url": "https://arxiv.org/abs/2604.19818",
+      "abstract": "https://arxiv.org/pdf/2604.19818"
+    },
+    {
+      "id": "arXiv:2604.05229",
+      "date": "Apr 2026",
+      "title": "From Governance Norms to Enforceable Controls: A Layered Translation Method for Runtime Guardrails in Agentic AI",
+      "authors": "Christopher Koch",
+      "url": "https://arxiv.org/abs/2604.05229",
+      "abstract": "https://arxiv.org/pdf/2604.05229"
+    },
+    {
+      "id": "arXiv:2603.29681",
+      "date": "Mar 2026",
+      "title": "Beyond the Steeper Curve: AI-Mediated Metacognitive Decoupling and the Limits of the Dunning-Kruger Metaphor",
+      "authors": "Christopher Koch",
+      "url": "https://arxiv.org/abs/2603.29681",
+      "abstract": "https://arxiv.org/pdf/2603.29681"
+    },
+    {
+      "id": "arXiv:2602.20684",
+      "date": "Feb 2026",
+      "title": "Agile V: A Compliance-Ready Framework for AI-Augmented Engineering — From Concept to Audit-Ready Delivery",
+      "authors": "Christopher Koch, Joshua Andreas Wellbrock",
+      "url": "https://arxiv.org/abs/2602.20684",
+      "abstract": "https://arxiv.org/pdf/2602.20684"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Merck Award",
+      "year": "2023",
+      "issuer": null
+    },
+    {
+      "name": "Chemical & Pharmaceutical Development Silent Hero Award",
+      "year": "2020",
+      "issuer": null
+    },
+    {
+      "name": "code-2-cloud Hackathon Winner, Accenture/AWS/Merck",
+      "year": "2019",
+      "issuer": null
+    },
+    {
+      "name": "ESA Space Solutions Prize",
+      "year": "2018",
+      "issuer": null
+    },
+    {
+      "name": "ESA Overall Winner — Space For Inspiration Conference",
+      "year": "2018",
+      "issuer": null
+    },
+    {
+      "name": "Sustainable Exploration Masters Winner, Airbus/Air Liquide/Merck",
+      "year": "2018",
+      "issuer": null
+    },
+    {
+      "name": "Hack a Bot Challenge Winner, Microsoft/Merck",
+      "year": "2018",
+      "issuer": null
+    },
+    {
+      "name": "Hack a Bot Overall Winner, Microsoft/Merck",
+      "year": "2018",
+      "issuer": null
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Architecting on AWS",
+      "year": "2022",
+      "issuer": "AWS"
+    },
+    {
+      "name": "Taking the Lead",
+      "year": "2021",
+      "issuer": "Janus GmbH & Co. KG"
+    },
+    {
+      "name": "Rhetorik: Mit guten Argumenten überzeugen",
+      "year": "2021",
+      "issuer": "PMI"
+    },
+    {
+      "name": "Inspirational Leadership Skills",
+      "year": "2020",
+      "issuer": "Chris Croft & Udemy"
+    },
+    {
+      "name": "Leadership Fundamentals",
+      "year": "2020",
+      "issuer": "LinkedIn"
+    },
+    {
+      "name": "Professional Scrum Master I",
+      "year": null,
+      "issuer": "Scrum.org"
+    },
+    {
+      "name": "SAFe Agile",
+      "year": null,
+      "issuer": "Scaled Agile"
+    },
+    {
+      "name": "Computer Science Principles",
+      "year": null,
+      "issuer": "Harvard University"
+    },
+    {
+      "name": "Kenntnisnachweis § 21a LuftVO — Flugmodelle",
+      "year": "2017",
+      "issuer": "Bundesrepublik Deutschland"
+    }
+  ],
+  "apps": [
+    {
+      "slug": "freeslots",
+      "name": "FreeSlots",
+      "tagline": "See when you're free. Share it in seconds.",
+      "summary": "Turns your calendars into clean, shareable availability — without exposing event details.",
+      "appStore": "https://apps.apple.com/us/app/freeslots-share-availability/id6808129276",
+      "platforms": [
+        "iPhone",
+        "iOS 18 or later",
+        "Productivity",
+        "One-time Pro, no subscription",
+        "Reads your calendars read-only — never creates or edits events",
+        "Copy or share your availability as clean plain text, ready to paste",
+        "Custom working hours, buffers, minimum slot length, and time rounding",
+        "Clean, Compact, or Conversational output styles",
+        "No account, no backend, no ads, no analytics — works fully offline"
+      ],
+      "features": [
+        "Reads your calendars read-only — never creates or edits events",
+        "Copy or share your availability as clean plain text, ready to paste",
+        "Custom working hours, buffers, minimum slot length, and time rounding",
+        "Clean, Compact, or Conversational output styles",
+        "No account, no backend, no ads, no analytics — works fully offline"
+      ],
+      "url": "https://koch.codes/apps/freeslots/",
+      "privacy": "https://koch.codes/apps/freeslots/privacy.html",
+      "support": "https://koch.codes/apps/freeslots/support.html",
+      "markdown": "https://koch.codes/apps/freeslots/index.md"
+    },
+    {
+      "slug": "sundown",
+      "name": "Sundown",
+      "tagline": "A quieter end to the day.",
+      "summary": "A bedside sunset light: warm light, then deep red, then dark. Collects no data, works fully offline.",
+      "appStore": "https://apps.apple.com/us/app/sundown-sleep-light/id6807182599",
+      "platforms": [
+        "iPhone",
+        "iOS 18 or later",
+        "Lifestyle",
+        "Gentle warm-to-red-to-dark sunset using your screen and rear light",
+        "Preset lengths plus a one-tap \"+10 min\" extension",
+        "Optional bedtime reminder notification — it only reminds you, it never starts a sunset on its own",
+        "No account, no ads, no analytics — works fully offline"
+      ],
+      "features": [
+        "Gentle warm-to-red-to-dark sunset using your screen and rear light",
+        "Preset lengths plus a one-tap \"+10 min\" extension",
+        "Optional bedtime reminder notification — it only reminds you, it never starts a sunset on its own",
+        "Sundown Pro adds Shortcuts/Siri Start, custom sunset profiles (Gentle, Deep Red, Long Evening), and custom extension lengths from 3–30 minutes",
+        "No account, no ads, no analytics — works fully offline"
+      ],
+      "url": "https://koch.codes/apps/sundown/",
+      "privacy": "https://koch.codes/apps/sundown/privacy.html",
+      "support": "https://koch.codes/apps/sundown/support.html",
+      "markdown": "https://koch.codes/apps/sundown/index.md"
+    },
+    {
+      "slug": "droproute",
+      "name": "DropRoute",
+      "tagline": "Save files in one tap.",
+      "summary": "Save any file from the share sheet into your favorite Files folders with one tap. No account, fully offline.",
+      "appStore": "https://apps.apple.com/us/app/droproute-save-to-folder/id6819878022",
+      "platforms": [
+        "iPhone & iPad",
+        "iOS 18 or later",
+        "Productivity",
+        "One-time Pro, no subscription",
+        "Your favorite folders as one-tap destinations in any app's share sheet",
+        "Works with On My iPhone/iPad, iCloud Drive and other Files locations",
+        "Never overwrites by accident — duplicates are kept as \"Invoice 2.pdf\"",
+        "One-tap repair if a folder was moved or a drive disconnected",
+        "Shortcuts action \"Save Files to Route\"",
+        "No account, no backend, no ads, no analytics — works fully offline"
+      ],
+      "features": [
+        "Your favorite folders as one-tap destinations in any app's share sheet",
+        "Works with On My iPhone/iPad, iCloud Drive and other Files locations",
+        "Never overwrites by accident — duplicates are kept as \"Invoice 2.pdf\"",
+        "One-tap repair if a folder was moved or a drive disconnected",
+        "Shortcuts action \"Save Files to Route\"",
+        "Pro (one-time purchase): unlimited routes, file name templates, rename while saving",
+        "No account, no backend, no ads, no analytics — works fully offline"
+      ],
+      "url": "https://koch.codes/apps/droproute/",
+      "privacy": "https://koch.codes/apps/droproute/privacy.html",
+      "support": "https://koch.codes/apps/droproute/support.html",
+      "markdown": "https://koch.codes/apps/droproute/index.md"
+    },
+    {
+      "slug": "cronlet",
+      "name": "Cronlet",
+      "tagline": "Run Shortcuts on a schedule.",
+      "summary": "Runs your Shortcuts in 45 minutes, every hour, or weekdays at 17:00 — local and private, no account.",
+      "appStore": "https://apps.apple.com/us/app/cronlet-shortcut-scheduler/id6819878633",
+      "platforms": [
+        "iPhone",
+        "iOS 18 or later",
+        "Productivity",
+        "One-time Pro, no subscription",
+        "Once, daily, or every 5 minutes to 12 hours — optionally within a time window",
+        "Next run at a glance, pause/resume, Run Now, run history",
+        "One Shortcuts automation runs every job — set it up once",
+        "No account, no server, no ads, no analytics — fully local"
+      ],
+      "features": [
+        "Once, daily, or every 5 minutes to 12 hours — optionally within a time window",
+        "Next run at a glance, pause/resume, Run Now, run history",
+        "One Shortcuts automation runs every job — set it up once",
+        "Shortcuts actions: Get Due Shortcut, Schedule Shortcut, Pause All Jobs",
+        "No account, no server, no ads, no analytics — fully local"
+      ],
+      "url": "https://koch.codes/apps/cronlet/",
+      "privacy": "https://koch.codes/apps/cronlet/privacy.html",
+      "support": "https://koch.codes/apps/cronlet/support.html",
+      "markdown": "https://koch.codes/apps/cronlet/index.md"
+    },
+    {
+      "slug": "redline",
+      "name": "Redline",
+      "tagline": null,
+      "summary": "",
+      "appStore": null,
+      "platforms": [],
+      "features": [],
+      "url": "https://koch.codes/apps/redline/",
+      "privacy": "https://koch.codes/apps/redline/privacy.html",
+      "support": "https://koch.codes/apps/redline/support.html",
+      "markdown": "https://koch.codes/apps/redline/index.md"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "url": "https://koch.codes/",
+      "markdown": "https://koch.codes/index.md"
+    },
+    {
+      "path": "/apps/",
+      "url": "https://koch.codes/apps/",
+      "markdown": "https://koch.codes/apps/index.md"
+    },
+    {
+      "path": "/apps/freeslots/",
+      "url": "https://koch.codes/apps/freeslots/",
+      "markdown": "https://koch.codes/apps/freeslots/index.md"
+    },
+    {
+      "path": "/apps/freeslots/privacy.html",
+      "url": "https://koch.codes/apps/freeslots/privacy.html",
+      "markdown": "https://koch.codes/apps/freeslots/privacy.md"
+    },
+    {
+      "path": "/apps/freeslots/support.html",
+      "url": "https://koch.codes/apps/freeslots/support.html",
+      "markdown": "https://koch.codes/apps/freeslots/support.md"
+    },
+    {
+      "path": "/apps/sundown/",
+      "url": "https://koch.codes/apps/sundown/",
+      "markdown": "https://koch.codes/apps/sundown/index.md"
+    },
+    {
+      "path": "/apps/sundown/privacy.html",
+      "url": "https://koch.codes/apps/sundown/privacy.html",
+      "markdown": "https://koch.codes/apps/sundown/privacy.md"
+    },
+    {
+      "path": "/apps/sundown/support.html",
+      "url": "https://koch.codes/apps/sundown/support.html",
+      "markdown": "https://koch.codes/apps/sundown/support.md"
+    },
+    {
+      "path": "/apps/droproute/",
+      "url": "https://koch.codes/apps/droproute/",
+      "markdown": "https://koch.codes/apps/droproute/index.md"
+    },
+    {
+      "path": "/apps/droproute/privacy.html",
+      "url": "https://koch.codes/apps/droproute/privacy.html",
+      "markdown": "https://koch.codes/apps/droproute/privacy.md"
+    },
+    {
+      "path": "/apps/droproute/support.html",
+      "url": "https://koch.codes/apps/droproute/support.html",
+      "markdown": "https://koch.codes/apps/droproute/support.md"
+    },
+    {
+      "path": "/apps/cronlet/",
+      "url": "https://koch.codes/apps/cronlet/",
+      "markdown": "https://koch.codes/apps/cronlet/index.md"
+    },
+    {
+      "path": "/apps/cronlet/privacy.html",
+      "url": "https://koch.codes/apps/cronlet/privacy.html",
+      "markdown": "https://koch.codes/apps/cronlet/privacy.md"
+    },
+    {
+      "path": "/apps/cronlet/support.html",
+      "url": "https://koch.codes/apps/cronlet/support.html",
+      "markdown": "https://koch.codes/apps/cronlet/support.md"
+    },
+    {
+      "path": "/apps/redline/privacy.html",
+      "url": "https://koch.codes/apps/redline/privacy.html",
+      "markdown": "https://koch.codes/apps/redline/privacy.md"
+    },
+    {
+      "path": "/apps/redline/support.html",
+      "url": "https://koch.codes/apps/redline/support.html",
+      "markdown": "https://koch.codes/apps/redline/support.md"
+    }
+  ],
+  "contact": {
+    "email": "chris@koch.codes",
+    "support": "feedback@koch.codes",
+    "linkedin": "https://www.linkedin.com/in/koch-christopher/",
+    "github": "https://github.com/KochC"
+  }
+}

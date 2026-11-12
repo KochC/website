@@ -75,4 +75,21 @@ Architecting on AWS (AWS, 2022); Taking the Lead (Janus GmbH & Co. KG, 2021); Rh
 - The full site (https://koch.codes/) is a client-rendered Vue 3 SPA; this file exists so agents and crawlers get accurate content without executing JavaScript.
 - The site is available in German (default) and English (toggle in the UI); this file is in English.
 - robots.txt (https://koch.codes/robots.txt) explicitly permits AI/LLM crawlers.
-- For legal/imprint information (German TMG requirements), see the #impressum section on the site.
+
+## Machine-readable entry points
+
+- **Markdown:** every page has a Markdown twin. Send `Accept: text/markdown` to
+  any page URL, or fetch `<path>/index.md` (directory pages) / `<path>.md`
+  (file pages) directly.
+- **Long form:** https://koch.codes/llms-full.md — profile, work history,
+  publication list and apps in one document.
+- **Structured JSON:** https://koch.codes/.well-known/agent-data.json
+- **MCP (read-only tools):** https://koch.codes/mcp — card at
+  https://koch.codes/.well-known/mcp/server-card.json. Tools: `get_profile`,
+  `list_experience`, `list_publications`, `list_apps`, `get_app`, `get_contact`.
+- **A2A:** https://koch.codes/.well-known/agent-card.json (endpoint at `/a2a`).
+- **API catalogue (RFC 9727):** https://koch.codes/.well-known/api-catalog
+- **Agent skills:** https://koch.codes/.well-known/agent-skills/index.json
+- **Access & authentication:** https://koch.codes/auth.md — everything public,
+  no registration, read-only.
+- **Legal/imprint:** see the #impressum section on the site.

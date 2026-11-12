@@ -3,6 +3,7 @@
 # A machine-readable summary for LLM agents is available at /llms.txt
 
 User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
 Allow: /
 
 # --- AI / LLM crawlers & agents (explicitly welcomed) ---

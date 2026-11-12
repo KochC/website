@@ -1,0 +1,38 @@
+# Cloudflare Worker that adds the agent layer a static host cannot provide:
+# Markdown content negotiation, Link response headers, a read-only MCP endpoint
+# (/mcp) and a minimal A2A endpoint (/a2a).
+#
+# Requests are proxied to GitHub Pages unchanged; only HTML responses are
+# rewritten, and /mcp + /a2a are answered by the Worker itself.
+#
+# Deploy:  npm run agents:deploy
+# Local:   npx wrangler dev --config workers/wrangler.toml \
+#            --var ORIGIN_URL:http://localhost:4173
+
+name = "koch-codes-agents"
+main = "agent-edge.js"
+compatibility_date = "2026-11-01"
+
+# All paths go through the Worker: it rewrites HTML responses (Link headers,
+# Markdown negotiation), owns /mcp and /a2a, and proxies everything else to the
+# GitHub Pages origin untouched.
+routes = [
+  { pattern = "koch.codes/*", zone_name = "koch.codes" },
+]
+
+[observability]
+enabled = true
+
+[vars]
+# Origin that serves the built site. In production this is the custom domain
+# itself: a same-zone fetch() goes to the origin (GitHub Pages) behind the
+# route, not back into this Worker.
+# Override for `wrangler dev --var ORIGIN_URL:http://localhost:4173`.
+ORIGIN_URL = "https://koch.codes"
+
+# Bundle the shared, build-time data. workers/generated/ is produced by
+# `npm run agents:build` and is gitignored; this hook regenerates it on deploy
+# so the Worker can never ship stale content.
+# NOTE: keep this table last — anything after a [table] header belongs to it.
+[build]
+command = "node scripts/build-agent-files.mjs"

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved</title>
+<link rel="canonical" href="https://koch.codes/llms-full.md">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=/llms-full.md">
+</head>
+<body><p>Moved to <a href="/llms-full.md">/llms-full.md</a>.</p></body>
+</html>

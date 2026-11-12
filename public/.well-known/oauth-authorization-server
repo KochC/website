@@ -1,0 +1,35 @@
+{
+  "issuer": "https://koch.codes/oauth",
+  "authorization_endpoint": "https://koch.codes/oauth/authorize",
+  "token_endpoint": "https://koch.codes/oauth/token",
+  "revocation_endpoint": "https://koch.codes/oauth/revoke",
+  "jwks_uri": "https://koch.codes/oauth/jwks.json",
+  "response_types_supported": [
+    "code"
+  ],
+  "response_modes_supported": [
+    "query"
+  ],
+  "grant_types_supported": [
+    "authorization_code",
+    "refresh_token"
+  ],
+  "code_challenge_methods_supported": [
+    "S256"
+  ],
+  "token_endpoint_auth_methods_supported": [
+    "none",
+    "client_secret_basic"
+  ],
+  "scopes_supported": [
+    "profile:read"
+  ],
+  "service_documentation": "https://koch.codes/llms.txt",
+  "authorization_response_iss_parameter_supported": true,
+  "agent_auth": {
+    "register_uri": null,
+    "registration_methods": [],
+    "note": "No dynamic client registration. Single first-party client.",
+    "contact": "chris@koch.codes"
+  }
+}

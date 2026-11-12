@@ -5,8 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "npm run agents:build && vite build",
+    "preview": "vite preview",
+    "agents:build": "node scripts/build-agent-files.mjs",
+    "agents:check": "node scripts/build-agent-files.mjs --check",
+    "agents:test": "node scripts/test-agent-files.mjs && node scripts/test-worker.mjs",
+    "agents:deploy": "node scripts/build-agent-files.mjs && npx --yes wrangler@4 deploy --config workers/wrangler.toml"
   },
   "dependencies": {
     "vue": "^3.5.0"

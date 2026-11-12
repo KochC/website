@@ -1,0 +1,40 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://koch.codes/mcp",
+      "service-desc": [
+        {
+          "href": "https://koch.codes/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://koch.codes/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://koch.codes/mcp",
+          "title": "MCP endpoint (Streamable HTTP, tools/list)"
+        }
+      ]
+    },
+    {
+      "anchor": "https://koch.codes/.well-known/agent-data.json",
+      "service-desc": [
+        {
+          "href": "https://koch.codes/.well-known/agent-data.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://koch.codes/llms.txt",
+          "type": "text/plain"
+        }
+      ]
+    }
+  ]
+}

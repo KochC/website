@@ -1,0 +1,15 @@
+{
+  "resource": "https://koch.codes/mcp",
+  "authorization_servers": [
+    "https://koch.codes/oauth"
+  ],
+  "scopes_supported": [
+    "profile:read"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
+  "resource_documentation": "https://koch.codes/llms.txt",
+  "resource_name": "koch.codes read-only MCP endpoint",
+  "tls_client_certificate_bound_access_tokens": false
+}

@@ -21,3 +21,10 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Generated agent data bundled into the edge Worker (npm run agents:build)
+workers/generated/
+
+# Wrangler local dev state (wrangler dev / miniflare)
+.wrangler/
+workers/.wrangler/

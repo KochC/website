@@ -17,4 +17,6 @@ jobs:
         run: |
           npm ci
           echo 'export var build_version = "0.${{ github.run_number }}";' > ./src/components/version.js
-          npm run build
+          npm run agents:build
+          npm run agents:test
+          npx vite build
