@@ -225,6 +225,44 @@ await check('sitemap.xml lists only pages that exist', async () => {
   assert(!locs.some((loc) => loc.includes('/apps/redline/')), 'redline has no landing page but is listed')
 })
 
+await check('sitemap carries a lastmod for every URL', async () => {
+  const xml = await readFile(path.join(PUBLIC, 'sitemap.xml'), 'utf8')
+  const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) ?? []
+  assert(urlBlocks.length > 0, 'no <url> blocks')
+  // A missing prefix (public/) once made git return a date for only one entry;
+  // require every entry to carry one so that regression is caught.
+  const withDates = urlBlocks.filter((block) => /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(block))
+  assert(
+    withDates.length === urlBlocks.length,
+    `${urlBlocks.length - withDates.length} of ${urlBlocks.length} URLs lack a valid lastmod`,
+  )
+})
+
+await check('a custom 404 page is published', async () => {
+  const body = await readFile(path.join(PUBLIC, '404.html'), 'utf8')
+  assert(body.includes('/apps/apps.css'), '404 should use the site stylesheet')
+  assert(body.includes('noindex'), '404 should not be indexed')
+  assert(body.includes('href="/"'), '404 should offer a way back')
+})
+
+await check('home page declares a social preview image', async () => {
+  const html = await readFile(path.join(ROOT, 'index.html'), 'utf8')
+  assert(/og:image" content="https:\/\/koch\.codes\/og\.jpg/.test(html), 'og:image missing or not absolute')
+  assert(/twitter:card" content="summary_large_image"/.test(html), 'twitter card should be large')
+  const image = await readFile(path.join(PUBLIC, 'og.jpg'))
+  assert(image.length > 10000, 'og.jpg looks empty')
+  // Must be a real JPEG and the documented 1200x630.
+  assert(image[0] === 0xff && image[1] === 0xd8, 'og.jpg is not a JPEG')
+})
+
+await check('document language is kept in sync with the locale', async () => {
+  const html = await readFile(path.join(ROOT, 'index.html'), 'utf8')
+  assert(/document\.documentElement\.lang = locale/.test(html), 'bootstrap should set lang from the stored locale')
+  const i18n = await readFile(path.join(ROOT, 'src/composables/useI18n.js'), 'utf8')
+  assert(/document\.documentElement\.lang = l/.test(i18n), 'setLocale should update the document language')
+  assert(/hreflang="de"/.test(html) && /hreflang="en"/.test(html), 'hreflang alternates missing')
+})
+
 console.log('\nWorker source')
 
 const workerSource = await readFile(path.join(ROOT, 'workers/agent-edge.js'), 'utf8')

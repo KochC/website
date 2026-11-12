@@ -8,6 +8,9 @@
     <meta name="author" content="Christopher Koch" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://koch.codes/" />
+    <link rel="alternate" hreflang="de" href="https://koch.codes/" />
+    <link rel="alternate" hreflang="en" href="https://koch.codes/" />
+    <link rel="alternate" hreflang="x-default" href="https://koch.codes/" />
     <link rel="icon" href="/favicon.ico" />
 
     <!-- Open Graph -->
@@ -16,13 +19,20 @@
     <meta property="og:title" content="Christopher Koch — koch.codes" />
     <meta property="og:description" content="Lead Engineer @ M-Trust™ (Merck Group) and independent Agentic AI researcher. Embedded systems, cloud architecture, cryptography, and multi-agent AI systems." />
     <meta property="og:url" content="https://koch.codes/" />
+    <meta property="og:image" content="https://koch.codes/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Christopher Koch — Vertrauen durch Engineering, von Firmware bis zu autonomer KI" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="profile:first_name" content="Christopher" />
     <meta property="profile:last_name" content="Koch" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Christopher Koch — koch.codes" />
     <meta name="twitter:description" content="Lead Engineer @ M-Trust™ (Merck Group) and independent Agentic AI researcher." />
+    <meta name="twitter:image" content="https://koch.codes/og.jpg" />
 
     <!-- Machine-readable summary for LLMs/agents -->
     <link rel="llms.txt" href="/llms.txt" />
@@ -75,6 +85,13 @@
           var isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
           if (isDark) {
             document.documentElement.classList.add('dark');
+          }
+          // The page ships as German, but the toggle can be English. Set lang
+          // before paint so assistive tech and search engines see the language
+          // the page will actually be read in (the SPA has no server render).
+          var locale = window.localStorage.getItem('kochcodes-locale');
+          if (locale === 'en' || locale === 'de') {
+            document.documentElement.lang = locale;
           }
         } catch (e) {}
       })();

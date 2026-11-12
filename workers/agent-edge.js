@@ -16,6 +16,54 @@
 const SITE = 'https://koch.codes'
 
 /**
+ * Security headers applied to every response the Worker returns.
+ *
+ * GitHub Pages cannot set these, but the Worker now fronts every request, so
+ * this is the cheapest place to add them. CSP avoids 'unsafe-inline' for
+ * scripts by hashing the one executable inline script at build time (see
+ * INLINE_SCRIPT_HASHES); Vue compiles to external bundles and the theme
+ * directive sets styles via CSS custom properties, so no inline style
+ * allowance is needed either.
+ */
+function securityHeaders(inlineScriptHashes, { secure = true } = {}) {
+  const csp = [
+    "default-src 'self'",
+    `script-src 'self' ${inlineScriptHashes.join(' ')}`.trim(),
+    // Nothing on the site uses inline style attributes; the spotlight effect
+    // sets CSS custom properties from an external script, which CSP allows.
+    "style-src 'self' https://fonts.googleapis.com",
+    'font-src https://fonts.gstatic.com',
+    "img-src 'self' data:",
+    "connect-src 'self'",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "object-src 'none'",
+    // Only over HTTPS: locally this would rewrite http://localhost subresources
+    // to https:// and the page would fail to load at all.
+    ...(secure ? ['upgrade-insecure-requests'] : []),
+  ].join('; ')
+
+  return {
+    'Content-Security-Policy': csp,
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+    'X-Frame-Options': 'DENY',
+    'Cross-Origin-Opener-Policy': 'same-origin',
+  }
+}
+
+function applySecurityHeaders(response, inlineScriptHashes, { secure = true } = {}) {
+  const out = new Response(response.body, response)
+  for (const [name, value] of Object.entries(securityHeaders(inlineScriptHashes, { secure }))) {
+    out.headers.set(name, value)
+  }
+  return out
+}
+
+/**
  * Origin fetch.
  *
  * The site is served by GitHub Pages behind the proxied koch.codes DNS record.
@@ -46,14 +94,24 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url)
     const origin = env?.ORIGIN_URL || SITE
+    const { INLINE_SCRIPT_HASHES } = await import('./generated/agent-data.js')
+    // upgrade-insecure-requests only makes sense over TLS, and would break any
+    // http:// origin (local development, wrangler dev).
+    const secure = new URL(origin).protocol === 'https:'
 
+    let response
     // Never rewrite our own origin subrequest (see ORIGIN_HEADER above).
-    if (request.headers.get(ORIGIN_HEADER) === '1') return directToOrigin(request, origin)
+    if (request.headers.get(ORIGIN_HEADER) === '1') {
+      response = await directToOrigin(request, origin)
+    } else if (url.pathname === '/mcp') {
+      response = await handleMcp(request)
+    } else if (url.pathname === '/a2a') {
+      response = await handleA2A(request, origin)
+    } else {
+      response = await handleContent(request, ctx, origin)
+    }
 
-    if (url.pathname === '/mcp') return handleMcp(request)
-    if (url.pathname === '/a2a') return handleA2A(request, origin)
-
-    return handleContent(request, ctx, origin)
+    return applySecurityHeaders(response, INLINE_SCRIPT_HASHES, { secure })
   },
 }
 
@@ -69,6 +127,12 @@ function acceptsMarkdown(request) {
   if (markdown === -1) return false
   const html = accept.indexOf('text/html')
   return html === -1 || markdown < html
+}
+
+/** True when the client is asking for a web page (curl's bare wildcard counts). */
+function wantsHtml(request) {
+  const accept = request.headers.get('Accept') || ''
+  return accept.includes('text/html') || accept.includes('*/*') || accept === ''
 }
 
 /** Map a page URL to the Markdown twin generated at build time. */
@@ -137,7 +201,9 @@ async function handleContent(request, ctx, origin) {
       (url.pathname.endsWith('/') && !url.pathname.startsWith('/.well-known/')) ||
       url.pathname.endsWith('.html'))
 
-  if (!isContentPage) return finalize(await fetchToOrigin(request, origin), url.pathname)
+  if (!isContentPage) {
+    return withStyledNotFound(request, await fetchToOrigin(request, origin), url.pathname, origin)
+  }
 
   if (acceptsMarkdown(request)) {
     const mirror = await fetchToOrigin(
@@ -155,7 +221,11 @@ async function handleContent(request, ctx, origin) {
           'Content-Type': 'text/markdown; charset=utf-8',
           Vary: 'Accept',
           'X-Markdown-Tokens': String(Math.ceil(body.length / 4)),
-          'Cache-Control': 'public, max-age=300',
+          // Never let a shared cache hold the markdown variant: Cloudflare's
+          // free plan keys the cache on URL alone and ignores Vary, so a
+          // cached markdown response could be served to a browser (and vice
+          // versa). Markdown is cheap to regenerate, so keep it uncached.
+          'Cache-Control': 'private, max-age=0, must-revalidate',
           'Access-Control-Allow-Origin': '*',
         },
       })
@@ -163,7 +233,7 @@ async function handleContent(request, ctx, origin) {
   }
 
   const response = await fetchToOrigin(request, origin)
-  const finalized = finalize(response, url.pathname)
+  const finalized = await withStyledNotFound(request, response, url.pathname, origin)
 
   const contentType = finalized.headers.get('Content-Type') || ''
   if (contentType.includes('text/html')) {
@@ -173,6 +243,30 @@ async function handleContent(request, ctx, origin) {
     finalized.headers.set('Vary', vary ? `${vary}, Accept` : 'Accept')
   }
   return finalized
+}
+
+/**
+ * Serve the site's own styled 404 page when the origin said 404.
+ *
+ * GitHub Pages' custom_404 setting is off, so unknown paths otherwise get
+ * GitHub's generic page. The status stays 404 — never a soft 200 — and the
+ * replacement keeps the Link header and Vary that HTML responses get.
+ */
+async function withStyledNotFound(request, response, pathname, origin) {
+  const finalized = finalize(response, pathname)
+  if (finalized.status !== 404 || !wantsHtml(request)) return finalized
+
+  const notFound = await fetchToOrigin(
+    new Request(`${origin}/404.html`, { headers: { [ORIGIN_HEADER]: '1' } }),
+    origin,
+  )
+  if (!notFound.ok) return finalized
+
+  const styled = finalize(notFound, '/404.html')
+  styled.headers.set('Link', LINK_HEADER)
+  const vary = styled.headers.get('Vary')
+  styled.headers.set('Vary', vary ? `${vary}, Accept` : 'Accept')
+  return new Response(styled.body, { status: 404, headers: styled.headers })
 }
 
 /**

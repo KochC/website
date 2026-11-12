@@ -333,6 +333,36 @@ emit('schemas/agent-data.schema.json', JSON.stringify(agentDataSchema, null, 2))
 const agentDataJson = JSON.stringify(agentData, null, 2)
 emit('.well-known/agent-data.json', agentDataJson)
 
+// ---------------------------------------------------------------------------
+// Build version stamp
+// ---------------------------------------------------------------------------
+// version.js is generated, not tracked: CI overwrites it with the run number
+// (which used to leave the working tree dirty after every build). Create a dev
+// placeholder only when it is missing so local builds still work.
+const versionFile = path.join(ROOT, 'src/components/version.js')
+if (!existsSync(versionFile)) {
+  await writeFile(versionFile, 'export var build_version = "dev";\n', 'utf8')
+}
+
+// ---------------------------------------------------------------------------
+// CSP inline-script hashes
+// ---------------------------------------------------------------------------
+//
+// The built page has exactly one executable inline script (the no-flash theme
+// bootstrap). Hashing it lets the worker send a strict CSP without
+// 'unsafe-inline'; if that script ever changes, this hash must be regenerated,
+// which is why it is derived here rather than typed by hand.
+const htmlEntry = await readFile(path.join(ROOT, 'index.html'), 'utf8')
+const inlineScriptHashes = []
+for (const match of htmlEntry.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+  const attrs = match[1]
+  const body = match[2]
+  if (!body.trim()) continue // src= scripts and empty tags
+  if (/type\s*=\s*"application\/(ld\+json|json)"/i.test(attrs)) continue // data, not code
+  const hash = createHash('sha256').update(body, 'utf8').digest('base64')
+  inlineScriptHashes.push(`'sha256-${hash}'`)
+}
+
 // The Worker needs the same facts. Embedding them at build time keeps /mcp and
 // /a2a working with zero origin round-trips (and zero failure modes), while
 // still coming from this one generator. Written outside public/ so it is never
@@ -354,6 +384,10 @@ export const MCP_TOOLS = ${JSON.stringify(
     null,
     2,
   )}
+
+// sha256 hashes of the executable inline scripts in index.html, for the
+// worker's Content-Security-Policy script-src directive.
+export const INLINE_SCRIPT_HASHES = ${JSON.stringify(inlineScriptHashes)}
 `,
   'utf8',
 )
@@ -654,14 +688,42 @@ ${agentData.apps
 emit('llms-full.md', llmsFull)
 
 // ---------------------------------------------------------------------------
-// robots.txt and sitemap.xml
+// Custom 404
 // ---------------------------------------------------------------------------
-
-await writeAgentPolicyFiles()
+// GitHub Pages serves this for unknown paths. Without it visitors get GitHub's
+// default page; a small static file keeps the site's look and offers a way back.
+const NOT_FOUND_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found — koch.codes</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/apps/apps.css">
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="/">&larr; koch.codes</a></p>
+  <span class="pill">404</span>
+  <h1>That page doesn't exist</h1>
+  <p class="tagline">The link may be outdated, or the page may have moved.</p>
+  <div class="card">
+    <p style="margin:0">Try the <a href="/">home page</a>, or one of the apps:
+    <a href="/apps/">all apps</a> ·
+    <a href="/apps/freeslots/">FreeSlots</a> ·
+    <a href="/apps/sundown/">Sundown</a> ·
+    <a href="/apps/droproute/">DropRoute</a> ·
+    <a href="/apps/cronlet/">Cronlet</a>.</p>
+  </div>
+  <p class="meta">If you followed a link from another site, email
+  <a href="mailto:feedback@koch.codes">feedback@koch.codes</a> and it will be fixed.</p>
+</div>
+</body>
+</html>
+`
 
 async function writeAgentPolicyFiles() {
   const robots = await readFile(path.join(PUBLIC, 'robots.txt'), 'utf8')
-  const sitemap = await readFile(path.join(PUBLIC, 'sitemap.xml'), 'utf8')
 
   // Cloudflare injects a managed Content-Signal block ahead of our file at the
   // edge; declare ours explicitly so the policy also holds on any origin that
@@ -674,24 +736,35 @@ async function writeAgentPolicyFiles() {
       )
   emitPublic('robots.txt', withSignals)
 
-  const urls = [
-    { loc: `${SITE}/`, priority: '1.0', changefreq: 'monthly' },
-    { loc: `${SITE}/apps/`, priority: '0.9', changefreq: 'monthly' },
+  const pages = [
+    { loc: `${SITE}/`, file: 'index.html', priority: '1.0' },
+    { loc: `${SITE}/apps/`, file: 'apps/index.html', priority: '0.9' },
     // Only apps with a real landing page: Redline publishes privacy and
     // support pages only, and is intentionally unlisted on the overview.
     ...APP_SLUGS.filter((slug) => appPages.get(slug)?.appStore).map((slug) => ({
       loc: `${SITE}/apps/${slug}/`,
+      file: `apps/${slug}/index.html`,
       priority: '0.8',
-      changefreq: 'monthly',
     })),
   ]
+
+  // lastmod tells crawlers what actually changed. Derive it from the file's own
+  // history in git; when that is unavailable (fresh clone, tarball) fall back to
+  // omitting the element rather than inventing a date.
+  const urls = []
+  for (const page of pages) {
+    // Paths are relative to public/, which is where these files live.
+    const lastmod = await gitLastModified(`public/${page.file}`)
+    urls.push({ ...page, lastmod })
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
   .map(
     (url) => `  <url>
-    <loc>${url.loc}</loc>
-    <changefreq>${url.changefreq}</changefreq>
+    <loc>${url.loc}</loc>${url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''}
+    <changefreq>monthly</changefreq>
     <priority>${url.priority}</priority>
   </url>`,
   )
@@ -699,7 +772,26 @@ ${urls
 </urlset>
 `
   emitPublic('sitemap.xml', xml)
+  emitPublic('404.html', NOT_FOUND_HTML)
 }
+
+/** ISO date of the last commit touching `relPath`, or null if unavailable. */
+async function gitLastModified(relPath) {
+  try {
+    const { execFile } = await import('node:child_process')
+    const { promisify } = await import('node:util')
+    const run = promisify(execFile)
+    const { stdout } = await run('git', ['log', '-1', '--format=%cs', '--', relPath], {
+      cwd: ROOT,
+    })
+    const date = stdout.trim()
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null
+  } catch {
+    return null
+  }
+}
+
+await writeAgentPolicyFiles()
 
 // ---------------------------------------------------------------------------
 // Redirect stubs for the legacy paths scanners probe

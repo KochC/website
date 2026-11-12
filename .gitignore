@@ -28,3 +28,6 @@ workers/generated/
 # Wrangler local dev state (wrangler dev / miniflare)
 .wrangler/
 workers/.wrangler/
+
+# Build version stamp (generated at build time; CI writes 0.<run number>)
+src/components/version.js

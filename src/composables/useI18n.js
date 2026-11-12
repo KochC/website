@@ -7,6 +7,11 @@ const locale = ref(localStorage.getItem(LOCALE_KEY) || 'de')
 function setLocale(l) {
   locale.value = l
   localStorage.setItem(LOCALE_KEY, l)
+  // Keep the document language truthful for assistive tech and search
+  // engines; the bootstrap script sets it before first paint.
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = l
+  }
 }
 
 const de = {

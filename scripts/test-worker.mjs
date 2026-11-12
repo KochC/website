@@ -44,9 +44,11 @@ async function serveOrigin(request) {
   const url = new URL(request.url)
   const clean = decodeURIComponent(url.pathname)
 
-  // GitHub Pages only honours the custom domain; a request that arrives
-  // without the canonical host is answered with a 301.
-  if (url.host !== 'koch.codes') {
+  // Model the pages host: only the canonical hostname gets content, anything
+  // else is answered with the 301 GitHub Pages sends. Any localhost port is
+  // treated as the canonical host so dev ports can vary.
+  const isLocal = url.hostname === 'localhost' || url.hostname === '127.0.0.1'
+  if (url.host !== 'koch.codes' && !isLocal) {
     return new Response(null, { status: 301, headers: { Location: `${SITE}${url.pathname}` } })
   }
 
@@ -85,11 +87,6 @@ globalThis.fetch = async (input) => {
   const request = input instanceof Request ? input : new Request(input)
   const url = new URL(request.url)
 
-  // In production a same-zone fetch() resolves to the origin; the URL still
-  // uses the site's own hostname.
-  if (url.origin !== SITE) {
-    throw new Error(`unexpected subrequest origin: ${url.origin}`)
-  }
   if (request.headers.get(ORIGIN_HEADER) !== '1') {
     // A subrequest that is not explicitly tagged means the Worker forgot the
     // guard and would loop on the real edge.
@@ -383,6 +380,103 @@ console.log('\nA2A endpoint')
 console.log('\nRedirect safety')
 await expect('origin was reached for real subrequests', originHits > 0)
 await expect('no subrequest re-entered the Worker', loopDetected === 0)
+
+console.log('\nSecurity headers')
+
+{
+  const response = await call('/')
+  const expected = {
+    'Strict-Transport-Security': 'max-age',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'X-Frame-Options': 'DENY',
+    'Permissions-Policy': 'camera=()',
+  }
+  for (const [name, fragment] of Object.entries(expected)) {
+    const value = response.headers.get(name) ?? ''
+    await expect(`${name} is set`, value.includes(fragment), `got "${value}"`)
+  }
+}
+
+{
+  const response = await call('/')
+  const csp = response.headers.get('Content-Security-Policy') ?? ''
+  await expect('CSP is present', csp.length > 0)
+  await expect("CSP default-src is 'self'", csp.includes("default-src 'self'"))
+  await expect('CSP forbids framing', csp.includes("frame-ancestors 'none'"))
+  await expect('CSP blocks object embeds', csp.includes("object-src 'none'"))
+  // The whole point of hashing: no blanket inline script allowance.
+  await expect(
+    "CSP does not allow unsafe-inline scripts",
+    !/script-src[^;]*unsafe-inline/.test(csp),
+    csp.match(/script-src[^;]*/)?.[0],
+  )
+  await expect(
+    'CSP hashes the inline theme script',
+    /script-src[^;]*'sha256-/.test(csp),
+    csp.match(/script-src[^;]*/)?.[0],
+  )
+}
+
+{
+  // Headers must not leak onto the worker's own subrequests, and must be on
+  // JSON/error responses too.
+  const mcp = await call('/mcp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list' }),
+  })
+  await expect('security headers are applied to /mcp too', Boolean(mcp.headers.get('X-Content-Type-Options')))
+
+  const missing = await call('/definitely-not-a-page')
+  await expect('security headers are applied to error responses', Boolean(missing.headers.get('X-Content-Type-Options')))
+}
+
+{
+  // upgrade-insecure-requests must be present in production (https origin) but
+  // absent over http, where it would rewrite localhost subresources to https
+  // and break the page entirely.
+  const httpsResponse = await worker.fetch(
+    new Request(`${SITE}/`),
+    { ORIGIN_URL: SITE },
+    {},
+  )
+  await expect(
+    'CSP upgrades insecure requests in production',
+    (httpsResponse.headers.get('Content-Security-Policy') ?? '').includes('upgrade-insecure-requests'),
+  )
+  const httpResponse = await worker.fetch(
+    new Request(`${SITE}/`),
+    { ORIGIN_URL: 'http://localhost:4174' },
+    {},
+  )
+  await expect(
+    'CSP omits upgrade-insecure-requests for http origins',
+    !(httpResponse.headers.get('Content-Security-Policy') ?? '').includes('upgrade-insecure-requests'),
+  )
+}
+
+{
+  // Cloudflare free plan ignores Vary when caching, so markdown must not be
+  // publicly cacheable or a browser could receive it.
+  const response = await call('/', { headers: { Accept: 'text/markdown' } })
+  const cacheControl = (response.headers.get('Cache-Control') ?? '').toLowerCase()
+  await expect(
+    'markdown responses are not publicly cached',
+    cacheControl.includes('private') && !/public/.test(cacheControl),
+    cacheControl,
+  )
+}
+
+{
+  // GitHub Pages' custom_404 is off, so the worker substitutes the site's own
+  // styled 404 page while keeping the 404 status (never a soft 200).
+  const response = await call('/definitely-not-a-page', { headers: { Accept: 'text/html' } })
+  const body = await response.text()
+  await expect('unknown paths return 404', response.status === 404, `got ${response.status}`)
+  await expect('unknown paths serve the styled 404 page', body.includes('That page doesn'), body.slice(0, 80))
+  await expect('404 page is not indexable', body.includes('noindex'))
+}
 
 console.log('')
 if (failures.length) {
