@@ -219,6 +219,19 @@ console.log('\nLink headers')
 }
 
 {
+  // These are application/json, not linkset — the untyped-file fallback must
+  // not relabel every extensionless well-known document.
+  for (const doc of ['/.well-known/oauth-protected-resource', '/.well-known/oauth-authorization-server']) {
+    const response = await call(doc)
+    await expect(
+      `${doc} is served as application/json`,
+      (response.headers.get('Content-Type') ?? '').startsWith('application/json'),
+      response.headers.get('Content-Type'),
+    )
+  }
+}
+
+{
   const response = await call('/llms.txt')
   await expect('non-HTML responses are not given a Link header', !response.headers.get('Link'))
   await expect('llms.txt is proxied intact', (await response.text()).includes('Christopher Koch'))

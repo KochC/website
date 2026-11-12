@@ -137,7 +137,7 @@ async function handleContent(request, ctx, origin) {
       (url.pathname.endsWith('/') && !url.pathname.startsWith('/.well-known/')) ||
       url.pathname.endsWith('.html'))
 
-  if (!isContentPage) return finalize(await fetchToOrigin(request, origin))
+  if (!isContentPage) return finalize(await fetchToOrigin(request, origin), url.pathname)
 
   if (acceptsMarkdown(request)) {
     const mirror = await fetchToOrigin(
@@ -163,7 +163,7 @@ async function handleContent(request, ctx, origin) {
   }
 
   const response = await fetchToOrigin(request, origin)
-  const finalized = finalize(response)
+  const finalized = finalize(response, url.pathname)
 
   const contentType = finalized.headers.get('Content-Type') || ''
   if (contentType.includes('text/html')) {
@@ -183,20 +183,26 @@ async function handleContent(request, ctx, origin) {
  * a copied Content-Length truncates the body and a copied Content-Encoding
  * makes the client read plain text as gzip. Both must go.
  *
- * Extensionless well-known documents (/.well-known/api-catalog) have no
- * extension for the static host to infer a type from, so they arrive with an
- * empty Content-Type; RFC 9727 requires application/linkset+json.
+ * Extensionless well-known documents have no extension for the static host to
+ * infer a type from, so they arrive untyped. Each one has a registered type:
+ * RFC 9727 requires application/linkset+json for the api-catalog, while the
+ * OAuth metadata documents are application/json.
  */
-function finalize(response) {
+function finalize(response, pathname = '') {
   const out = new Response(response.body, response)
   out.headers.delete('Content-Encoding')
   out.headers.delete('Content-Length')
 
   const contentType = (out.headers.get('Content-Type') || '').trim()
   if (!contentType) {
-    out.headers.set('Content-Type', 'application/linkset+json')
+    out.headers.set('Content-Type', contentTypeForPath(pathname))
   }
   return out
+}
+
+function contentTypeForPath(pathname) {
+  if (pathname.endsWith('/api-catalog')) return 'application/linkset+json'
+  return 'application/json'
 }
 
 // ---------------------------------------------------------------------------
